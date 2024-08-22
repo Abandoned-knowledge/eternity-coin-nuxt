@@ -1,8 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
-  devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
+  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "@nuxtjs/google-fonts"],
   srcDir: "src/",
 
   dir: {
@@ -11,5 +10,13 @@ export default defineNuxtConfig({
 
   imports: {
     dirs: ["shared/composables"],
+  },
+  googleFonts: {
+    families: {
+      Montserrat: true,
+    },
+  },
+  tailwindcss: {
+    viewer: false,
   },
 });
