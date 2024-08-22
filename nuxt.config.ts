@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/google-fonts",
     "dayjs-nuxt",
-    "nuxt-primevue"
+    "nuxt-primevue",
   ],
   srcDir: "src/",
 
@@ -24,5 +24,6 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
     viewer: false,
+    configPath: "./tailwind.config.ts",
   },
 });
