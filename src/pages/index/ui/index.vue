@@ -1,5 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+</script>
 
-<template>index page</template>
+<template>
+  <Button label="submit"/>
+</template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

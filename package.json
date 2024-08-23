@@ -13,12 +13,15 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@pinia/nuxt": "^0.5.4",
+    "@primevue/themes": "^4.0.4",
     "nuxt": "^3.12.4",
     "nuxt-primevue": "^3.0.0",
     "pinia": "^2.2.2",
+    "primevue": "^4.0.4",
     "vue": "latest"
   },
   "devDependencies": {
+    "@primevue/nuxt-module": "^4.0.4",
     "chart.js": "^4.4.4",
     "dayjs-nuxt": "^2.1.9",
     "prettier": "^3.3.3",

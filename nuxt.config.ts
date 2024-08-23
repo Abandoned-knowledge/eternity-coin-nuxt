@@ -1,4 +1,5 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import Aura from "@primevue/themes/aura";
+
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   modules: [
@@ -6,7 +7,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/google-fonts",
     "dayjs-nuxt",
-    "nuxt-primevue",
+    "@primevue/nuxt-module",
   ],
   srcDir: "src/",
 
@@ -25,5 +26,8 @@ export default defineNuxtConfig({
   tailwindcss: {
     viewer: false,
     configPath: "./tailwind.config.ts",
+  },
+  primevue: {
+    importTheme: { from: "@/app/theme/main.ts" },
   },
 });
