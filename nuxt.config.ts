@@ -1,5 +1,3 @@
-import Aura from "@primevue/themes/aura";
-
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   modules: [
@@ -15,8 +13,17 @@ export default defineNuxtConfig({
     layouts: "app/layouts",
   },
 
+  components: {
+    dirs: [
+      'shared/icons',
+    ]
+  },
+
   imports: {
-    dirs: ["shared/composables"],
+    autoImport: true,
+    dirs: [
+      "shared/composables", 
+    ],
   },
   googleFonts: {
     families: {
