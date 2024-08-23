@@ -3,6 +3,9 @@ import colors from "tailwindcss/colors";
 export default {
   content: ["./src/**/*.{ts,vue,js}"],
   theme: {
+    borderRadius: {
+      DEFAULT: '10px',
+    },
     extend: {
       fontFamily: {
         sans: ['"Montserrat", system-ui'],

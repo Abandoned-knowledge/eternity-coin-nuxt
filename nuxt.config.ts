@@ -14,7 +14,11 @@ export default defineNuxtConfig({
   },
 
   components: {
-    dirs: ["shared/icons/ui", "widgets/"],
+    dirs: [
+      "shared/icons/ui/", 
+      "widgets/", 
+      "shared/layouts/frame/ui/",
+    ],
   },
 
   imports: {

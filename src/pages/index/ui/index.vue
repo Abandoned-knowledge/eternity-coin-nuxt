@@ -1,8 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <p class="text-primary">index page</p>
-  <Button>asdasd</Button>
+  <FrameLayout title="frame"> index page </FrameLayout>
 </template>
 
 <style lang="scss" scoped></style>
