@@ -6,8 +6,8 @@ export const options: ChartOptions = {
   interaction: { mode: "index" },
   onHover(event, elements) {
     const chartElement = event.native?.target as HTMLElement;
-    const activeElement = elements[0];
-    chartElement.style.cursor = activeElement ? "pointer" : "auto";
+    const isActive = elements?.length > 0;
+    chartElement.style.cursor = isActive ? "pointer" : "auto";
   },
   responsive: true,
   plugins: {
