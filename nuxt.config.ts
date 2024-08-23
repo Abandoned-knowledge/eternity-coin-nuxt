@@ -9,6 +9,8 @@ export default defineNuxtConfig({
   ],
   srcDir: "src/",
 
+  css: ['~/app/style/main.css'],
+
   dir: {
     layouts: "app/layouts",
   },
@@ -16,6 +18,7 @@ export default defineNuxtConfig({
   components: {
     dirs: [
       'shared/icons/ui',
+      'widgets/',
     ]
   },
 
