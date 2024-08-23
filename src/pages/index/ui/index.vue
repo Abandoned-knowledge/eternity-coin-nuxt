@@ -2,9 +2,7 @@
 
 <template>
   <div class="mt-10 flex items-center justify-center">
-    <FrameLayout title="frame" class="w-[300px]">
-      <ChartDonut />
-    </FrameLayout>
+    <ChartDonut />
   </div>
 </template>
 

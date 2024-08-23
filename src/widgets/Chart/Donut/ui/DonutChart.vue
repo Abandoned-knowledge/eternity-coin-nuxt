@@ -1,24 +1,13 @@
 <script setup lang="ts">
-import { options, plugins, data } from "../";
-
-import type { ChartData } from "chart.js";
-
-const chartData = computed(() => {
-  return {
-    labels: data.map((el) => el.label),
-    datasets: [
-      {
-        label: "Sales",
-        data: data.map((el) => el.data),
-        backgroundColor: data.map((el) => el.color),
-      },
-    ],
-  } as ChartData;
-});
+import emptyChartFrame from "./emptyChartFrame.vue";
+import Canvas from "@/features/Chart/Donut";
+const isEmpty = ref<boolean>(true);
 </script>
 
 <template>
-  <Chart type="doughnut" :data="chartData" :options="options" :plugins="plugins" />
+  <Button severity="contrast" @click="isEmpty = !isEmpty">toggle</Button>
+  <FrameLayout title="frame" class="w-[300px]">
+    <emptyChartFrame v-if="isEmpty"/>
+    <Canvas v-else/>
+  </FrameLayout>
 </template>
-
-<style lang="scss" scoped></style>
