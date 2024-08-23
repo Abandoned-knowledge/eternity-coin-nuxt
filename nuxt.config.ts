@@ -14,11 +14,7 @@ export default defineNuxtConfig({
   },
 
   components: {
-    dirs: [
-      "shared/icons/ui/", 
-      "widgets/", 
-      "shared/layouts/frame/ui/",
-    ],
+    dirs: ["shared/icons/ui/", "widgets/", "shared/layouts/frame/ui/"],
   },
 
   imports: {
@@ -27,7 +23,7 @@ export default defineNuxtConfig({
   },
   googleFonts: {
     families: {
-      Montserrat: true,
+      Montserrat: [400, 500, 700],
     },
   },
   tailwindcss: {
