@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import colors from "tailwindcss/colors";
+
 export default {
   content: ["./src/**/*.{ts,vue,js}"],
   theme: {
@@ -20,15 +21,14 @@ export default {
         padding: "1rem",
       },
       colors: {
-        bg: "var(--bg-color)",
-        frame: "var(--frame-color)",
-        primary: "var(--primary-color)",
-        grey: "var(--grey-color)",
-        expense: "var(--expense-color)",
-        income: "var(--income-color)",
-        dark: "var(--dark-color)",
-        link: "var(--link-color)",
-        warning: "var(--warning-color)",
+        surface: colors.slate[50],
+        primary: colors.sky[500],
+        grey: colors.gray[500],
+        expense: colors.red[600],
+        income: colors.green[500],
+        dark: colors.black,
+        link: colors.blue[500],
+        warning: colors.red[700],
       },
     },
   },

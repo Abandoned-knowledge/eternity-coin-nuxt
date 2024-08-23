@@ -1,22 +1,22 @@
 import { definePreset } from "@primevue/themes";
-
 import Aura from "@primevue/themes/aura";
+import colors from "tailwindcss/colors";
 
 const preset = definePreset(Aura, {
   semantic: {
     primary: {
-      50: "{sky.50}",
-      100: "{sky.100}",
-      200: "{sky.200}",
-      300: "{sky.300}",
-      400: "{sky.400}",
-      500: "{sky.500}",
-      600: "{sky.600}",
-      700: "{sky.700}",
-      800: "{sky.800}",
-      900: "{sky.900}",
-      950: "{sky.950}",
-    }
+      50: colors.sky[50],
+      100: colors.sky[100],
+      200: colors.sky[200],
+      300: colors.sky[300],
+      400: colors.sky[400],
+      500: colors.sky[500],
+      600: colors.sky[600],
+      700: colors.sky[700],
+      800: colors.sky[800],
+      900: colors.sky[900],
+      950: colors.sky[950],
+    },
   },
 });
 

@@ -9,24 +9,17 @@ export default defineNuxtConfig({
   ],
   srcDir: "src/",
 
-  css: ['~/app/style/main.css'],
-
   dir: {
     layouts: "app/layouts",
   },
 
   components: {
-    dirs: [
-      'shared/icons/ui',
-      'widgets/',
-    ]
+    dirs: ["shared/icons/ui", "widgets/"],
   },
 
   imports: {
     autoImport: true,
-    dirs: [
-      "shared/composables", 
-    ],
+    dirs: ["shared/composables"],
   },
   googleFonts: {
     families: {

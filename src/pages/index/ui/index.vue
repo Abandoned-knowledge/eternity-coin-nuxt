@@ -1,8 +1,8 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-index page
+  <p class="text-primary">index page</p>
+  <Button>asdasd</Button>
 </template>
 
 <style lang="scss" scoped></style>
