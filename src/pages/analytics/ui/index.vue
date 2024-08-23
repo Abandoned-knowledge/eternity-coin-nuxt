@@ -2,7 +2,7 @@
 </script>
 
 <template>
-index page
+analytics
 </template>
 
 <style lang="scss" scoped></style>

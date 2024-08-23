@@ -1,8 +1,8 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main class="container mx-auto">
-    main layout
+  <Header class="container" />
+  <main class="container">
     <slot />
   </main>
 </template>
