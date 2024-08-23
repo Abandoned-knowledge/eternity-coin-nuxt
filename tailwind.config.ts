@@ -2,7 +2,11 @@
 export default {
   content: ["./src/**/*.{ts,vue,js}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['"Montserrat", system-ui'],
+      },
+    },
   },
   plugins: [],
 };
