@@ -15,7 +15,7 @@ export default defineNuxtConfig({
 
   components: {
     dirs: [
-      'shared/icons',
+      'shared/icons/ui',
     ]
   },
 

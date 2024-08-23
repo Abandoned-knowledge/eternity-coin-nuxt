@@ -2,6 +2,7 @@
 
 <template>
   <Button label="submit" />
+  <AnalyticsIcon />
 </template>
 
 <style lang="scss" scoped></style>
