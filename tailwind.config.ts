@@ -8,7 +8,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Montserrat", system-ui'],
+        sans: ['"Jost", system-ui'],
       },
       fontSize: {
         sm: "0.8rem",
@@ -26,7 +26,7 @@ export default {
       colors: {
         surface: colors.slate[50],
         primary: colors.sky[500],
-        grey: colors.gray[500],
+        gray: colors.gray[400],
         expense: colors.red[600],
         income: colors.green[500],
         dark: colors.black,

@@ -19,11 +19,14 @@ export default defineNuxtConfig({
 
   imports: {
     autoImport: true,
-    dirs: ["shared/composables"],
+    dirs: [
+      "shared/composables",
+      "shared/helpers",
+    ],
   },
   googleFonts: {
     families: {
-      Montserrat: [400, 500, 700],
+      Jost: [400, 500, 700],
     },
   },
   tailwindcss: {
