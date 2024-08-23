@@ -14,7 +14,7 @@ const toggle = (event: Event) => {
 
   <Menu
     unstyled
-    pt:root="rounded-xl p-2 shadow bg-white"
+    pt:root="rounded p-2 shadow bg-white"
     pt:list="flex flex-col gap-2"
     ref="menu"
     :model="burgerMenuItems"
@@ -22,7 +22,7 @@ const toggle = (event: Event) => {
   >
     <template #item="{ item }">
       <NuxtLink
-        class="text-grey flex items-center gap-2 px-2 pb-1 font-light transition-all duration-100"
+        class="flex items-center gap-2 px-2 pb-1 font-light text-grey transition-all duration-100"
         :to="item.route"
       >
         <component :is="item.icon" class="h-5 w-5" />
@@ -34,10 +34,10 @@ const toggle = (event: Event) => {
 
 <style lang="scss" scoped>
 .router-link-exact-active {
-  @apply border-b-dark border-b;
+  @apply border-b border-b-dark;
 
   & * {
-    @apply text-dark font-normal;
+    @apply font-normal text-dark;
   }
 }
 </style>

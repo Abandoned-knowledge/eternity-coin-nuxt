@@ -17,6 +17,7 @@ const preset = definePreset(Aura, {
       900: colors.sky[900],
       950: colors.sky[950],
     },
+    menu: {}
   },
 });
 
