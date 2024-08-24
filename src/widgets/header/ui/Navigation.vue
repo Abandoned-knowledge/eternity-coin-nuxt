@@ -5,7 +5,7 @@ import { menuItems } from "../";
 <template>
   <nav class="flex items-center gap-5">
     <NuxtLink
-      class="text-grey flex items-center gap-2 px-2 pb-1 font-light transition-all duration-100"
+      class="flex items-center gap-2 px-2 pb-1 font-light text-gray transition-all duration-100"
       v-for="item in menuItems"
       :to="item.route"
     >
@@ -17,10 +17,10 @@ import { menuItems } from "../";
 
 <style lang="scss" scoped>
 .router-link-exact-active {
-  @apply border-b-dark border-b;
+  @apply border-b border-b-dark;
 
   & * {
-    @apply text-dark font-normal;
+    @apply font-normal text-dark;
   }
 }
 </style>

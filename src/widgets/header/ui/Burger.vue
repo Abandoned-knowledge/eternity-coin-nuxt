@@ -22,7 +22,7 @@ const toggle = (event: Event) => {
   >
     <template #item="{ item }">
       <NuxtLink
-        class="flex items-center gap-2 px-2 pb-1 font-light text-grey transition-all duration-100"
+        class="flex items-center gap-2 px-2 pb-1 font-light text-gray transition-all duration-100"
         :to="item.route"
       >
         <component :is="item.icon" class="h-5 w-5" />
