@@ -1,13 +1,23 @@
 <script setup lang="ts">
 import emptyChartFrame from "./emptyChartFrame.vue";
 import Canvas from "@/features/Chart/Donut";
-const isEmpty = ref<boolean>(true);
+const props = defineProps<{ type: transactionType }>();
+
+const transactionStore = useTransactionStore();
+
+function checkIsEmpty(type: transactionType): boolean {
+  return type == "income"
+    ? transactionStore.donutChartDataIncome == null
+    : transactionStore.donutChartDataExpense == null;
+}
+
+const isEmpty = ref<boolean>(checkIsEmpty(props.type));
+watch(transactionStore, () => (isEmpty.value = checkIsEmpty(props.type)));
 </script>
 
 <template>
-  <Button severity="contrast" @click="isEmpty = !isEmpty">toggle</Button>
-  <FrameLayout title="frame" class="w-[400px]">
+  <FrameLayout :title="props.type">
     <emptyChartFrame v-if="isEmpty" />
-    <Canvas v-else />
+    <Canvas :type="props.type" v-else />
   </FrameLayout>
 </template>

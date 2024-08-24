@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { data } from "..";
+const props = defineProps<{ data: donutData[] }>();
 </script>
 
 <template>
   <div class="data-list">
-    <div v-for="item in data" class="data-list__item">
+    <div v-for="item in props.data" class="data-list__item">
       <span class="uppercase" :style="{ color: item.color }"> {{ item.label }} </span>
-      <span>{{ item.data }}</span>
+      <span>{{ item.value }}</span>
     </div>
   </div>
 </template>

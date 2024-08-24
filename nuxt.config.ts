@@ -26,6 +26,8 @@ export default defineNuxtConfig({
     dirs: [
       "shared/composables",
       "shared/helpers",
+      "shared/store",
+      "shared/types",
     ],
   },
   googleFonts: {

@@ -1,9 +1,8 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="mt-10 flex items-center justify-center">
-    <ChartDonut />
+  <div class="mt-10 flex h-max items-center">
+    <ChartDonut type="income" />
+    <ChartDonut type="expense" />
   </div>
 </template>
-
-<style lang="scss" scoped></style>
