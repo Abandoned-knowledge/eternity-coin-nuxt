@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { options, plugins, data } from "..";
 import type { ChartData } from "chart.js";
+import CategoryList from "./CategoryList.vue";
 
 const chartData = computed(() => {
   return {
@@ -17,5 +18,8 @@ const chartData = computed(() => {
 </script>
 
 <template>
-  <Chart type="doughnut" :data="chartData" :options="options" :plugins="plugins" />
+  <div class="flex flex-col gap-5">
+    <Chart type="doughnut" :data="chartData" :options="options" :plugins="plugins" />
+    <CategoryList />
+  </div>
 </template>

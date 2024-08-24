@@ -6,8 +6,8 @@ const isEmpty = ref<boolean>(true);
 
 <template>
   <Button severity="contrast" @click="isEmpty = !isEmpty">toggle</Button>
-  <FrameLayout title="frame" class="w-[300px]">
-    <emptyChartFrame v-if="isEmpty"/>
-    <Canvas v-else/>
+  <FrameLayout title="frame" class="w-[400px]">
+    <emptyChartFrame v-if="isEmpty" />
+    <Canvas v-else />
   </FrameLayout>
 </template>
