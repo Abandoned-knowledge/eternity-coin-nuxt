@@ -5,14 +5,11 @@ const props = defineProps<{ type: transactionType }>();
 
 const transactionStore = useTransactionStore();
 
-function checkIsEmpty(type: transactionType): boolean {
-  return type == "income"
+const isEmpty = computed(() => {
+  return props.type == "income"
     ? transactionStore.donutChartDataIncome == null
     : transactionStore.donutChartDataExpense == null;
-}
-
-const isEmpty = ref<boolean>(checkIsEmpty(props.type));
-watch(transactionStore, () => (isEmpty.value = checkIsEmpty(props.type)));
+});
 </script>
 
 <template>
