@@ -8,7 +8,7 @@ const toggle = (event: Event) => {
 </script>
 
 <template>
-  <Button @click="toggle" severity="contrast" class="aspect-square w-10 p-2 md:hidden">
+  <Button @click="toggle" severity="contrast" class="my-button aspect-square w-10 p-2">
     <BurgerIcon />
   </Button>
 
@@ -39,5 +39,8 @@ const toggle = (event: Event) => {
   & * {
     @apply font-normal text-dark;
   }
+}
+.my-button {
+  @apply md:hidden;
 }
 </style>
