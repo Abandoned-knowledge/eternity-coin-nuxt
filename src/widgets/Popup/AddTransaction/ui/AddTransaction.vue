@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Categories from "./Categories.vue";
+import Categories from "~/features/Categories";
 
 const categoryStore = useCategoryStore();
 
@@ -18,8 +18,9 @@ watch(value, () => (categoryStore.currentCategoryId = null));
     size="large"
     class="col-span-2 w-full xl:order-2 xl:col-span-1 xl:h-1/2 xl:w-auto"
     @click="isVisible = true"
-    >Add</Button
   >
+    Add
+  </Button>
 
   <Dialog v-model:visible="isVisible" header="Add Transaction" modal class="w-1/2">
     <form @submit.prevent class="flex flex-col items-center gap-10 py-5">
