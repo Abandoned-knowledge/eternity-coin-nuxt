@@ -1,6 +1,7 @@
 export const useCategoryStore = defineStore("category", () => {
-  const currentCategoryId = ref<number | null>(null);
-  
+  const currentCategory = ref<CategoryItem | null>(null);
+  const updateCategoryIsVisible = ref<boolean>(false);
+
   const income = ref<CategoryItem[] | null>([
     { category_id: 1, label: "Заработная плата", color: "#FF6B6B" },
     { category_id: 2, label: "Фриланс", color: "#FFC300" },
@@ -27,5 +28,5 @@ export const useCategoryStore = defineStore("category", () => {
     { category_id: 10, label: "Природа", color: "#9DE0AD" },
   ]);
 
-  return { income, expense, currentCategoryId };
+  return { income, expense, currentCategory, updateCategoryIsVisible };
 });
