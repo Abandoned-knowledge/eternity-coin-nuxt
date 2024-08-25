@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import Categories from "~/features/Categories";
+import Categories from "./Categories.vue";
 
 const categoryStore = useCategoryStore();
 
 const isVisible = ref(false);
 const inputValue = ref<string | null>(null);
-const categoryId = computed(() => categoryStore.currentCategoryId);
+const categoryId = computed(() => categoryStore.currentCategory?.category_id);
 
 const value = ref<transactionType>("expense");
 const options = ref<transactionType[]>(["expense", "income"]);
 
-watch(value, () => (categoryStore.currentCategoryId = null));
+watch(value, () => (categoryStore.currentCategory = null));
 </script>
 
 <template>
