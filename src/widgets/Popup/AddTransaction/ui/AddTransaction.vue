@@ -14,7 +14,12 @@ watch(value, () => (categoryStore.currentCategoryId = null));
 </script>
 
 <template>
-  <Button size="large" class="w-1/4" @click="isVisible = true">Add</Button>
+  <Button
+    size="large"
+    class="col-span-2 w-full xl:order-2 xl:col-span-1 xl:h-1/2 xl:w-auto"
+    @click="isVisible = true"
+    >Add</Button
+  >
 
   <Dialog v-model:visible="isVisible" header="Add Transaction" modal class="w-1/2">
     <form @submit.prevent class="flex flex-col items-center gap-10 py-5">

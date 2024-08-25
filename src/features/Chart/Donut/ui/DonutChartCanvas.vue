@@ -22,8 +22,8 @@ const chartData = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-5">
+  <div class="flex flex-col gap-5 justify-between h-full">
     <Chart type="doughnut" :data="chartData" :options="options" :plugins="plugins" />
-    <CategoryList :data="data" />
+    <!-- <CategoryList :data="data" /> -->
   </div>
 </template>
