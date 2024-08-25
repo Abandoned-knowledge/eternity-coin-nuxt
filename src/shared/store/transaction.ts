@@ -12,6 +12,16 @@ export const useTransactionStore = defineStore("transaction", () => {
     { label: "Проценты по вкладам", value: 100, color: "#FF8C00" },
     { label: "Криптовалюты", value: 700, color: "#2C3E50" },
     { label: "Консультации", value: 500, color: "#E74C3C" },
+    { label: "Зарплата", value: 1500, color: "#2ECC71" },
+    { label: "Фриланс", value: 800, color: "#3498DB" },
+    { label: "Инвестиции", value: 400, color: "#F1C40F" },
+    { label: "Продажа товаров", value: 600, color: "#E67E22" },
+    { label: "Аренда", value: 1200, color: "#9B59B6" },
+    { label: "Подарки", value: 300, color: "#FF5733" },
+    { label: "Дополнительные доходы", value: 250, color: "#8E44AD" },
+    { label: "Проценты по вкладам", value: 100, color: "#FF8C00" },
+    { label: "Криптовалюты", value: 700, color: "#2C3E50" },
+    { label: "Консультации", value: 500, color: "#E74C3C" },
   ]);
 
   const donutChartDataExpense = ref<donutData[] | null>([
