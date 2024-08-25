@@ -5,7 +5,7 @@ import Burger from "./Burger.vue";
 </script>
 
 <template>
-  <header class="flex justify-between items-center mt-5">
+  <header class="flex justify-between items-center pt-5">
     <NuxtLink to="/" class="flex items-center text-dark gap-2 text-title cursor-pointer">
       <LogoIcon /> <span class="hidden lg:inline-block">Eternity Coin</span>
     </NuxtLink>
