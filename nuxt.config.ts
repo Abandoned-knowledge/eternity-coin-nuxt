@@ -13,6 +13,8 @@ export default defineNuxtConfig({
     layouts: "app/layouts",
   },
 
+  css: ['~/app/style/main.css'],
+
   components: {
     dirs: [
       "shared/icons/ui/", 
