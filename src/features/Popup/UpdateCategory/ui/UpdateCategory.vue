@@ -11,6 +11,7 @@ const label = computed(() => {
 
 <template>
   <Dialog 
+  class="custom-dialog"
     v-model:visible="categoryStore.updateCategoryIsVisible" 
     modal 
     header="Update category"

@@ -22,7 +22,7 @@ watch(value, () => (categoryStore.currentCategory = null));
     Add
   </Button>
 
-  <Dialog v-model:visible="isVisible" header="Add Transaction" modal class="w-1/2">
+  <Dialog v-model:visible="isVisible" header="Add Transaction" modal class="custom-dialog">
     <form @submit.prevent class="flex flex-col items-center gap-10 py-5">
       <SelectButton
         v-model="value"

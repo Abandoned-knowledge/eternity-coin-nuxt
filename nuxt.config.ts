@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     layouts: "app/layouts",
   },
 
-  css: ['~/app/style/main.css'],
+  css: ['~/app/style/main.scss'],
 
   components: {
     dirs: [
