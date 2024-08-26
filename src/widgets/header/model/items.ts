@@ -1,4 +1,4 @@
-import { CategoryIcon, AnalyticsIcon, DashboardIcon, ProfileIcon } from "@/shared/icons";
+import { CategoryIcon, StatisticsIcon, DashboardIcon, ProfileIcon } from "@/shared/icons";
 
 export const menuItems = [
   {
@@ -7,9 +7,9 @@ export const menuItems = [
     icon: DashboardIcon,
   },
   {
-    label: "Analytics",
-    route: "/analytics",
-    icon: AnalyticsIcon,
+    label: "Statistics",
+    route: "/statistics",
+    icon: StatisticsIcon,
   },
   {
     label: "Categories",
