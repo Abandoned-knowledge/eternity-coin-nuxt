@@ -20,6 +20,7 @@ export default defineNuxtConfig({
       "shared/icons/ui/", 
       "widgets/", 
       "shared/layouts/frame/ui/",
+      "shared/components/",
     ],
   },
 

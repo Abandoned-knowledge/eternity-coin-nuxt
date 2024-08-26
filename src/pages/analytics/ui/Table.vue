@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import CategoryItem from "./CategoryItem.vue";
-
 const props = defineProps<{ type: transactionType | "all" }>();
 const transactionStore = useTransactionStore();
 const data = computed(() => {

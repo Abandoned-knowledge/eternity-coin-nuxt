@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import CategoryItem from "./CategoryItem.vue";
-
 const props = defineProps<{ type: transactionType }>();
 const categoryStore = useCategoryStore();
 
@@ -17,6 +15,7 @@ function clickHandle(current: clickedButton, color: string, category: CategoryIt
 <template>
   <div class="flex flex-wrap gap-1">
     <CategoryItem
+      outlined
       @click="clickHandle($event.target, category.color, category)"
       v-for="category in categories"
       :key="category.category_id"
