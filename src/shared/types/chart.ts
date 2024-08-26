@@ -3,3 +3,8 @@ export interface donutData {
   value: number;
   color: string;
 }
+
+export interface lineData {
+  date: string;
+  value: number;
+}
