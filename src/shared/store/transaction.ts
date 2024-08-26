@@ -1,4 +1,5 @@
 import type { donutData } from "../types/chart";
+import type { ITransactionData } from "../types/transaction";
 
 export const useTransactionStore = defineStore("transaction", () => {
   const donutChartDataIncome = ref<donutData[] | null>([
@@ -83,5 +84,91 @@ export const useTransactionStore = defineStore("transaction", () => {
     { date: "2024-09-29", value: 66 },
   ]);
 
-  return { donutChartDataExpense, donutChartDataIncome, lineChartDataIncome, lineChartDataExpense };
+  const incomeData = ref<ITransactionData[] | null>([
+    {
+      transaction_id: 1,
+      user_id: 101,
+      date: "2024-08-01",
+      value: 1500,
+      category: { category_id: 1, label: "Salary", color: "#4CAF50" },
+    },
+    {
+      transaction_id: 2,
+      user_id: 102,
+      date: "2024-08-05",
+      value: 300,
+      category: { category_id: 2, label: "Freelance", color: "#2196F3" },
+    },
+    {
+      transaction_id: 3,
+      user_id: 103,
+      date: "2024-08-10",
+      value: 450,
+      category: { category_id: 3, label: "Investment", color: "#FF9800" },
+    },
+    {
+      transaction_id: 4,
+      user_id: 101,
+      date: "2024-08-15",
+      value: 1200,
+      category: { category_id: 1, label: "Salary", color: "#4CAF50" },
+    },
+    {
+      transaction_id: 5,
+      user_id: 104,
+      date: "2024-08-20",
+      value: 600,
+      category: { category_id: 4, label: "Gift", color: "#9C27B0" },
+    },
+  ]);
+
+  const expenseData = ref<ITransactionData[] | null>([
+    {
+      transaction_id: 1,
+      user_id: 201,
+      date: "2024-08-02",
+      value: 2500,
+      category: { category_id: 5, label: "Consulting", color: "#FF5733" },
+    },
+    {
+      transaction_id: 2,
+      user_id: 202,
+      date: "2024-08-06",
+      value: 800,
+      category: { category_id: 6, label: "Part-time Job", color: "#C70039" },
+    },
+    {
+      transaction_id: 3,
+      user_id: 203,
+      date: "2024-08-12",
+      value: 1200,
+      category: { category_id: 7, label: "Sales", color: "#900C3F" },
+    },
+    {
+      transaction_id: 4,
+      user_id: 204,
+      date: "2024-08-18",
+      value: 1800,
+      category: { category_id: 8, label: "Rental Income", color: "#581845" },
+    },
+    {
+      transaction_id: 5,
+      user_id: 205,
+      date: "2024-08-22",
+      value: 950,
+      category: { category_id: 9, label: "Royalties", color: "#FFC300" },
+    },
+  ]);
+
+  const allData = ref<ITransactionData[] | null>(null);
+
+  return {
+    donutChartDataExpense,
+    donutChartDataIncome,
+    lineChartDataIncome,
+    lineChartDataExpense,
+    incomeData,
+    expenseData,
+    allData,
+  };
 });
