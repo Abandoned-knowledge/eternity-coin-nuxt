@@ -1,10 +1,20 @@
 <script setup lang="ts">
-import Canvas from "@/features/Chart/Line";
 const props = defineProps<{ type: transactionType }>();
+import Canvas from "@/features/Chart/Line";
+import EmptyLineFrame from "./EmptyLineFrame.vue";
+
+const transactionStore = useTransactionStore();
+
+const isEmpty = computed(() => {
+  return props.type == "income"
+    ? transactionStore.lineChartDataIncome == null
+    : transactionStore.lineChartDataExpense == null;
+});
 </script>
 
 <template>
   <FrameLayout :title="props.type">
-    <Canvas :type="props.type"/>
+    <EmptyLineFrame v-if="isEmpty" />
+    <Canvas :type="props.type" v-else />
   </FrameLayout>
 </template>
