@@ -15,9 +15,9 @@ const data = computed(() => {
 <template>
   <FrameLayout>
     <DataTable striped-rows paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" :value="data">
-      <Column sortable field="date" header="Date" />
-      <Column sortable field="value" header="Value" />
-      <Column sortable field="category.label" header="Category" class="flex justify-center">
+      <Column field="date" header="Date" />
+      <Column field="value" header="Value" />
+      <Column header="Category" class="flex justify-center">
         <template #body="slotProps">
           <CategoryItem
             :color="slotProps.data.category.color"
