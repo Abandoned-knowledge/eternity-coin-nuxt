@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{ type: transactionType }>();
+const props = defineProps<{ type: transactionType | 'all' }>();
 import Canvas from "@/features/Chart/Line";
 import EmptyLineFrame from "./EmptyLineFrame.vue";
 
