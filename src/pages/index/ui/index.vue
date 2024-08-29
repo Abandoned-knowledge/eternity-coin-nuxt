@@ -6,7 +6,7 @@ const windowStore = useWindowStore();
 <template>
   <div
     v-if="!windowStore.isMobile"
-    class="mt-10 grid grid-cols-2 justify-between gap-5 xl:grid-cols-3"
+    class="grid grid-cols-2 justify-between gap-5 xl:grid-cols-3"
   >
     <PopupAddTransaction />
     <ChartDonut type="income" class="xl:order-1" />

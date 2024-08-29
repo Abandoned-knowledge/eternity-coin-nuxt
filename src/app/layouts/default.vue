@@ -13,7 +13,7 @@ onMounted(() => {
 
 <template>
   <Header class="container" />
-  <main class="container flex-grow">
+  <main class="container flex-grow mt-5">
     <slot />
     <UpdateCategory />
   </main>
