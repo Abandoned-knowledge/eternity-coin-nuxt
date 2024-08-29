@@ -4,8 +4,8 @@ import FormChangePassword from "./FormChangePassword.vue";
 </script>
 
 <template>
-  <div class="flex w-full gap-5">
-    <FormChangePassword class="w-1/2" />
-    <FormChangeData class="w-1/2" />
+  <div class="flex w-full flex-col gap-5 md:flex-row">
+    <FormChangePassword class="md:w-1/2" />
+    <FormChangeData class="md:w-1/2" />
   </div>
 </template>
