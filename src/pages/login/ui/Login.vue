@@ -7,7 +7,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <FrameLayout title="Login" class="w-1/2">
+  <FrameLayout title="Login" class="w-full md:w-1/2">
     <form @submit.prevent class="form">
       <FloatLabel class="w-full">
         <InputText type="email" class="w-full" id="login" v-model="inputLogin" />

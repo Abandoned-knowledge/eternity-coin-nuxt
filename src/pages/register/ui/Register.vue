@@ -4,11 +4,13 @@ const inputName = ref();
 const inputPassword = ref();
 const inputPasswordRepeat = ref();
 
-setPageLayout("clear");
+onMounted(() => {
+  setPageLayout("clear");
+});
 </script>
 
 <template>
-  <FrameLayout title="Register" class="w-1/2">
+  <FrameLayout title="Register" class="w-full md:w-1/2">
     <form @submit.prevent class="form">
       <FloatLabel class="w-full">
         <InputText type="text" class="w-full" id="name" v-model="inputName" />
