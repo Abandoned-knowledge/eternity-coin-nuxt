@@ -32,6 +32,7 @@ export default defineNuxtConfig({
       "shared/helpers",
       "shared/store",
       "shared/types",
+      "features/Form",
     ],
   },
   googleFonts: {
