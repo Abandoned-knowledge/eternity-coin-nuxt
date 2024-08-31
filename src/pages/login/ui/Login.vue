@@ -1,24 +1,20 @@
 <script setup lang="ts">
-import { object, string } from "yup";
-
-const schema = object({
-  login: string().required().email().label("Email address"),
-  password: string().required().label("Password"),
-});
-
-const { defineField, errors } = useForm({
-  validationSchema: schema,
+const { defineField, errors, handleSubmit } = useForm({
+  validationSchema: FormLoginSchema,
 });
 
 const [login] = defineField("login");
 const [password] = defineField("password");
 
+const onSubmit = handleSubmit((values) => {
+  console.log(values);
+});
 setPageLayout("clear");
 </script>
 
 <template>
   <FrameLayout title="Login" class="w-full md:w-1/2">
-    <form @submit.prevent class="form">
+    <form @submit="onSubmit" class="form">
       <div class="w-full">
         <FloatLabel>
           <InputText
@@ -30,7 +26,7 @@ setPageLayout("clear");
           <label for="login">Login</label>
         </FloatLabel>
 
-        <small class="ml-1 text-warning">{{ errors.login }}</small>
+        <small class="form__error">{{ errors.login }}</small>
       </div>
 
       <div class="w-full">
@@ -45,7 +41,7 @@ setPageLayout("clear");
           <label for="password">Password</label>
         </FloatLabel>
 
-        <small class="ml-1 text-warning">{{ errors.password }}</small>
+        <small class="form__error">{{ errors.password }}</small>
       </div>
 
       <Button label="Login" type="submit" severity="contrast" />
