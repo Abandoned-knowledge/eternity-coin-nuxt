@@ -7,10 +7,9 @@ const categories = computed(() =>
   props.type == "income" ? categoryStore.income : categoryStore.expense,
 );
 
-function clickHandle(current: clickedButton, color: string, category: CategoryItem) {
+function clickHandle(category: CategoryItem) {
   categoryStore.currentCategory = category;
   categoryStore.updateCategoryIsVisible = true;
-  paintCategoryButton(current, color);
 }
 </script>
 
@@ -18,8 +17,7 @@ function clickHandle(current: clickedButton, color: string, category: CategoryIt
   <FrameLayout :title="title">
     <div class="flex flex-wrap gap-1">
       <CategoryItem
-        outlined
-        @click="clickHandle($event.target, category.color, category)"
+        @click="clickHandle(category)"
         v-for="category in categories"
         :key="category.category_id"
         :label="category.label"
