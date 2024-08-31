@@ -7,7 +7,7 @@ const props = defineProps<props>();
 
 <template>
   <div class="flex flex-col gap-2 rounded p-5 shadow">
-    <p v-if="props.title" class="text-title font-bold capitalize">
+    <p v-if="props.title" class="pb-2 text-title font-bold capitalize">
       {{ props.title }}
     </p>
     <slot />
