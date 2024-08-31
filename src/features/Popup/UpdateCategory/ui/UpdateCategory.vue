@@ -10,13 +10,13 @@ const label = computed(() => {
 </script>
 
 <template>
-  <Dialog 
-  class="custom-dialog"
-    v-model:visible="categoryStore.updateCategoryIsVisible" 
-    modal 
+  <Dialog
+    class="custom-dialog"
+    v-model:visible="categoryStore.updateCategoryIsVisible"
+    modal
     header="Update category"
   >
-    <form @submit.prevent class="flex flex-col items-center gap-5 py-5">
+    <form @submit.prevent class="form">
       <FloatLabel class="w-full">
         <InputText placeholder="New label" class="w-full" id="new_label" v-model="newLabel" />
         <label for="new_label">{{ label }}</label>

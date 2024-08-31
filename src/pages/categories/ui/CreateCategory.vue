@@ -5,7 +5,7 @@ const color = ref();
 
 <template>
   <FrameLayout title="create category">
-    <form @submit.prevent class="flex flex-col items-center gap-5 py-5">
+    <form @submit.prevent class="form">
       <FloatLabel class="w-full">
         <InputText placeholder="Label" class="w-full" id="label" v-model="label" />
         <label for="label">label</label>

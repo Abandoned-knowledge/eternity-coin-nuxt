@@ -4,9 +4,15 @@ const inputName = ref();
 
 <template>
   <FrameLayout title="change data">
-    <form @submit.prevent class="flex flex-col items-center gap-10 pb-3 pt-5">
+    <form @submit.prevent class="form">
       <FloatLabel class="w-full">
-        <InputText class="w-full" id="value" v-model="inputName" placeholder="Write the new name" required />
+        <InputText
+          class="w-full"
+          id="value"
+          v-model="inputName"
+          placeholder="Write the new name"
+          required
+        />
         <label for="value">Current name</label>
       </FloatLabel>
 

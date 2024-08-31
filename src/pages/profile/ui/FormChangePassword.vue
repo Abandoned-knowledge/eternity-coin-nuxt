@@ -5,7 +5,7 @@ const inputPasswordNew = ref();
 
 <template>
   <FrameLayout title="change password">
-    <form @submit.prevent class="flex flex-col items-center gap-10 pb-3 pt-5">
+    <form @submit.prevent class="form">
       <FloatLabel class="w-full">
         <Password
           pt:root="w-full"
@@ -13,6 +13,7 @@ const inputPasswordNew = ref();
           v-model="inputPassword"
           inputId="password"
           toggle-mask
+          :feedback="false"
         />
         <label for="password">Current password</label>
       </FloatLabel>

@@ -8,7 +8,7 @@ onMounted(() => {
 
 <template>
   <FrameLayout title="Login" class="w-1/2">
-    <form @submit.prevent class="flex flex-col items-center gap-10 py-5">
+    <form @submit.prevent class="form">
       <FloatLabel class="w-full">
         <InputText type="email" class="w-full" id="login" v-model="inputLogin" />
         <label for="login">Login</label>
