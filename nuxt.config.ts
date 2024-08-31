@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "dayjs-nuxt",
     "@primevue/nuxt-module",
+    '@vee-validate/nuxt',
   ],
   srcDir: "src/",
 
@@ -45,4 +46,7 @@ export default defineNuxtConfig({
   primevue: {
     importTheme: { from: "@/app/theme/main.ts" },
   },
+  veeValidate: {
+    autoImports: true,
+  }
 });
