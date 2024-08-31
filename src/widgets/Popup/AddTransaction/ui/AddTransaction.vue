@@ -5,6 +5,7 @@ const categoryStore = useCategoryStore();
 
 const isVisible = ref(false);
 const inputValue = ref<string | null>(null);
+const inputDescription = ref();
 const categoryId = computed(() => categoryStore.currentCategory?.category_id);
 
 const value = ref<transactionType>("expense");
@@ -35,6 +36,11 @@ watch(value, () => (categoryStore.currentCategory = null));
       <FloatLabel class="w-full">
         <InputText class="w-full" id="value" v-model="inputValue" required />
         <label for="value">Value</label>
+      </FloatLabel>
+
+      <FloatLabel class="w-full">
+        <InputText class="w-full" id="description" v-model="inputDescription" required />
+        <label for="description">Description</label>
       </FloatLabel>
 
       <Categories :type="value" />
