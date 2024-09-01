@@ -25,7 +25,7 @@ export default defineNuxtConfig({
       "shared/components/",
     ],
   },
-
+  serverDir: 'server/',
   imports: {
     autoImport: true,
     dirs: [
@@ -35,6 +35,10 @@ export default defineNuxtConfig({
       "shared/types",
       "features/Form",
     ],
+  },
+
+  supabase: {
+    redirect: false,
   },
   googleFonts: {
     families: {
