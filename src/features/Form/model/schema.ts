@@ -1,4 +1,4 @@
-import { object, string, ref } from "yup";
+import { object, string, ref, number, type ObjectShape } from "yup";
 
 export const FormLoginSchema = object({
   login: string().required().email().label("Email address"),
@@ -13,4 +13,10 @@ export const FormRegisterSchema = object({
     .required()
     .label("Password confirm")
     .oneOf([ref("password")], "Password must match"),
+});
+
+export const FormAddTransactionSchema = object({
+  value: number().required().label("Value"),
+  description: string().label("Description"),
+  type: string().required().label("Transaction type"),
 });

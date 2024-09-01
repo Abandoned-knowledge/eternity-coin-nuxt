@@ -1,17 +1,28 @@
 <script setup lang="ts">
 import Categories from "./Categories.vue";
 
+const { defineField, errors, handleSubmit } = useForm({
+  validationSchema: FormAddTransactionSchema,
+  initialValues: {
+    type: "expense" as transactionType,
+    value: null,
+    description: "",
+  },
+});
+
 const categoryStore = useCategoryStore();
 
 const isVisible = ref(false);
-const inputValue = ref<string | null>(null);
-const inputDescription = ref();
-const categoryId = computed(() => categoryStore.currentCategory?.category_id);
+const [value] = defineField("value");
+const [description] = defineField("description");
+const [type] = defineField("type");
 
-const value = ref<transactionType>("expense");
+const categoryId = computed(() => categoryStore.currentCategory?.category_id);
 const options = ref<transactionType[]>(["expense", "income"]);
 
-watch(value, () => (categoryStore.currentCategory = null));
+const onSubmit = handleSubmit((values) => {
+  console.log(values);
+});
 </script>
 
 <template>
@@ -24,30 +35,38 @@ watch(value, () => (categoryStore.currentCategory = null));
   </Button>
 
   <Dialog v-model:visible="isVisible" header="Add Transaction" modal class="custom-dialog">
-    <form @submit.prevent class="form">
-      <SelectButton
-        v-model="value"
-        :options="options"
-        pt:root="w-full"
-        pt:pcButton:root="w-full"
-        :allowEmpty="false"
-      />
+    <form @submit="onSubmit" class="form">
+      <div class="field">
+        <SelectButton
+          v-model="type"
+          :options="options"
+          :allowEmpty="false"
+          pt:root="w-full"
+          pt:pcButton:root="w-full"
+          :invalid="!!errors.type"
+        />
+        <small class="field__error">{{ errors.type }}</small>
+      </div>
 
-      <FloatLabel class="w-full">
-        <InputText class="w-full" id="value" v-model="inputValue" required />
-        <label for="value">Value</label>
-      </FloatLabel>
+      <div class="field">
+        <FloatLabel>
+          <InputText id="value" v-model="value" :invalid="!!errors.value" />
+          <label for="value">Value</label>
+        </FloatLabel>
+        <small class="field__error">{{ errors.value }}</small>
+      </div>
 
-      <FloatLabel class="w-full">
-        <InputText class="w-full" id="description" v-model="inputDescription" required />
-        <label for="description">Description</label>
-      </FloatLabel>
+      <div class="field">
+        <FloatLabel>
+          <InputText id="description" v-model="description" :invalid="!!errors.description" />
+          <label for="description">Description</label>
+        </FloatLabel>
+        <small class="field__error">{{ errors.description }}</small>
+      </div>
 
-      <Categories :type="value" />
+      <Categories :type="type" />
 
       <Button type="submit" label="ADD" severity="contrast" />
     </form>
   </Dialog>
 </template>
-
-<style lang="scss" scoped></style>

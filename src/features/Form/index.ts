@@ -1,3 +1,3 @@
-import { FormLoginSchema, FormRegisterSchema } from "./model/schema";
+import { FormLoginSchema, FormRegisterSchema, FormAddTransactionSchema } from "./model/schema";
 
-export { FormLoginSchema, FormRegisterSchema };
+export { FormLoginSchema, FormRegisterSchema, FormAddTransactionSchema };
