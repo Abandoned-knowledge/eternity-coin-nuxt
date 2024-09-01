@@ -25,3 +25,7 @@ export const FormChangePasswordSchema = object({
   password: string().required().label("Password"),
   password_new: string().required().label("New Password"),
 });
+
+export const FormChangeNameSchema = object({
+  name: string().required().label("Name"),
+});

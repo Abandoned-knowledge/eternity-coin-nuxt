@@ -1,22 +1,32 @@
 <script setup lang="ts">
-const inputName = ref();
+const { defineField, errors, handleSubmit } = useForm({
+  validationSchema: FormChangeNameSchema,
+});
+const [name] = defineField("name");
+
+const onSubmit = handleSubmit((values) => {
+  console.log(values);
+});
 </script>
 
 <template>
   <FrameLayout title="change data">
-    <form @submit.prevent class="form">
-      <FloatLabel class="w-full">
-        <InputText
-          class="w-full"
-          id="value"
-          v-model="inputName"
-          placeholder="Write the new name"
-          required
-        />
-        <label for="value">Current name</label>
-      </FloatLabel>
+    <form @submit="onSubmit" class="form">
+      <div class="field">
+        <FloatLabel>
+          <InputText
+            id="name"
+            v-model="name"
+            placeholder="Write the new name"
+            :invalid="!!errors.name"
+          />
+          <label for="name">Current name</label>
+        </FloatLabel>
 
-      <Button label="Change" severity="contrast" />
+        <small class="field__error">{{ errors.name }}</small>
+      </div>
+
+      <Button label="Change" type="submit" severity="contrast" />
     </form>
   </FrameLayout>
 </template>

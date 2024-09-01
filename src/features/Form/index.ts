@@ -3,6 +3,13 @@ import {
   FormRegisterSchema,
   FormAddTransactionSchema,
   FormChangePasswordSchema,
+  FormChangeNameSchema,
 } from "./model/schema";
 
-export { FormLoginSchema, FormRegisterSchema, FormAddTransactionSchema, FormChangePasswordSchema };
+export {
+  FormLoginSchema,
+  FormRegisterSchema,
+  FormAddTransactionSchema,
+  FormChangePasswordSchema,
+  FormChangeNameSchema,
+};
