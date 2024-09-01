@@ -1,35 +1,52 @@
 <script setup lang="ts">
-const inputPassword = ref();
-const inputPasswordNew = ref();
+const { defineField, errors, handleSubmit } = useForm({
+  validationSchema: FormChangePasswordSchema,
+});
+
+const [password] = defineField("password");
+const [password_new] = defineField("password_new");
+
+const onSubmit = handleSubmit((values) => {
+  console.log(values);
+});
 </script>
 
 <template>
   <FrameLayout title="change password">
-    <form @submit.prevent class="form">
-      <FloatLabel class="w-full">
-        <Password
-          pt:root="w-full"
-          pt:pcInput:root="w-full"
-          v-model="inputPassword"
-          inputId="password"
-          toggle-mask
-          :feedback="false"
-        />
-        <label for="password">Current password</label>
-      </FloatLabel>
+    <form @submit="onSubmit" class="form">
+      <div class="field">
+        <FloatLabel>
+          <Password
+            pt:root="w-full"
+            inputId="password"
+            v-model="password"
+            toggleMask
+            :feedback="false"
+            :invalid="!!errors.password"
+          />
+          <label for="password">Currenct password</label>
+        </FloatLabel>
 
-      <FloatLabel class="w-full">
-        <Password
-          pt:root="w-full"
-          pt:pcInput:root="w-full"
-          v-model="inputPasswordNew"
-          inputId="password_new"
-          toggle-mask
-        />
-        <label for="password_new">New password</label>
-      </FloatLabel>
+        <small class="field__error">{{ errors.password }}</small>
+      </div>
 
-      <Button label="Change" severity="contrast" />
+      <div class="field">
+        <FloatLabel>
+          <Password
+            pt:root="w-full"
+            inputId="password"
+            v-model="password_new"
+            toggleMask
+            :feedback="false"
+            :invalid="!!errors.password_new"
+          />
+          <label for="password">New password</label>
+        </FloatLabel>
+
+        <small class="field__error">{{ errors.password_new }}</small>
+      </div>
+
+      <Button label="Change" type="submit" severity="contrast" />
     </form>
   </FrameLayout>
 </template>
