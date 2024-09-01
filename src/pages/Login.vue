@@ -9,7 +9,10 @@ const [password] = defineField("password");
 const onSubmit = handleSubmit((values) => {
   console.log(values);
 });
-setPageLayout("clear");
+
+definePageMeta({
+  layout: "clear",
+});
 </script>
 
 <template>
