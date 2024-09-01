@@ -17,12 +17,7 @@ setPageLayout("clear");
     <form @submit="onSubmit" class="form">
       <div class="field">
         <FloatLabel>
-          <InputText
-            type="email"
-            id="login"
-            v-model="login"
-            :class="{ 'p-invalid': errors.login }"
-          />
+          <InputText type="email" id="login" v-model="login" :invalid="!!errors.login" />
           <label for="login">Login</label>
         </FloatLabel>
 
@@ -37,7 +32,7 @@ setPageLayout("clear");
             v-model="password"
             toggleMask
             :feedback="false"
-            :class="{ 'p-invalid': errors.password }"
+            :invalid="!!errors.password"
           />
           <label for="password">Password</label>
         </FloatLabel>
