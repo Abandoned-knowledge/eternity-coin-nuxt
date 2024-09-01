@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "dayjs-nuxt",
     "@primevue/nuxt-module",
     '@vee-validate/nuxt',
+    "@nuxtjs/supabase"
   ],
   srcDir: "src/",
 
