@@ -34,13 +34,12 @@ const onSubmit = handleSubmit((values) => {
         <FloatLabel>
           <Password
             pt:root="w-full"
-            inputId="password"
+            inputId="password_new"
             v-model="password_new"
             toggleMask
-            :feedback="false"
             :invalid="!!errors.password_new"
           />
-          <label for="password">New password</label>
+          <label for="password_new">New password</label>
         </FloatLabel>
 
         <small class="field__error">{{ errors.password_new }}</small>
