@@ -15,7 +15,7 @@ setPageLayout("clear");
 <template>
   <FrameLayout title="Login" class="w-full md:w-1/2">
     <form @submit="onSubmit" class="form">
-      <div class="w-full">
+      <div class="field">
         <FloatLabel>
           <InputText
             type="email"
@@ -26,10 +26,10 @@ setPageLayout("clear");
           <label for="login">Login</label>
         </FloatLabel>
 
-        <small class="form__error">{{ errors.login }}</small>
+        <small class="field__error">{{ errors.login }}</small>
       </div>
 
-      <div class="w-full">
+      <div class="field">
         <FloatLabel class="w-full">
           <Password
             pt:root="w-full"
@@ -37,11 +37,12 @@ setPageLayout("clear");
             v-model="password"
             toggleMask
             :feedback="false"
+            :class="{ 'p-invalid': errors.password }"
           />
           <label for="password">Password</label>
         </FloatLabel>
 
-        <small class="form__error">{{ errors.password }}</small>
+        <small class="field__error">{{ errors.password }}</small>
       </div>
 
       <Button label="Login" type="submit" severity="contrast" />

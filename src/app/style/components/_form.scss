@@ -8,7 +8,10 @@
     @apply w-full;
   }
 
-  .form__error {
-    @apply ml-1 text-warning;
+  .field {
+    @apply w-full;
+    &__error {
+      @apply ml-1 text-warning;
+    }
   }
 }
