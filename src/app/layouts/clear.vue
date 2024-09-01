@@ -1,5 +1,5 @@
 <template>
-  <main class="container mt-5 flex items-center justify-center h-screen">
+  <main class="container mt-5 flex h-screen items-center justify-center">
     <slot />
   </main>
 </template>
