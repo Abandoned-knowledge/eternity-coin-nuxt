@@ -3,16 +3,42 @@ const { defineField, errors, handleSubmit } = useForm({
   validationSchema: FormRegisterSchema,
 });
 
+const loading = ref(false);
+
+const toast = useToast();
 const [login] = defineField("login");
 const [name] = defineField("name");
 const [password] = defineField("password");
 const [password_confirm] = defineField("password_confirm");
 
-const onSubmit = handleSubmit((values) => {
-  console.log(values);
+function showToast(severity?: primeVueSeverity, msg: string) {
+  toast.add({ severity: severity, detail: msg, life: 2000 });
+}
+
+const onSubmit = handleSubmit(async (values) => {
+  loading.value = true;
+  const response = await $fetch("/api/users", {
+    method: "post",
+    body: {
+      login: values.login,
+      name: values.name,
+      password: values.password,
+      password_confirm: values.password_confirm,
+    },
+  });
+
+  if (response == "User created") {
+    showToast("success", response);
+    navigateTo("/login");
+  } else {
+    showToast("error", response);
+  }
+  loading.value = false;
 });
 
-setPageLayout("clear");
+definePageMeta({
+  layout: "clear",
+});
 </script>
 
 <template>
@@ -68,7 +94,7 @@ setPageLayout("clear");
         <small class="field__error">{{ errors.password_confirm }}</small>
       </div>
 
-      <Button label="Login" type="submit" severity="contrast" />
+      <Button :loading="loading" label="Register" type="submit" severity="contrast" />
     </form>
   </FrameLayout>
 </template>

@@ -17,7 +17,7 @@
     "@primevue/themes": "^4.0.4",
     "@vee-validate/nuxt": "^4.13.2",
     "@vee-validate/yup": "^4.13.2",
-    "nuxt": "^3.12.4",
+    "nuxt": "^3.13.0",
     "nuxt-primevue": "^3.0.0",
     "pinia": "^2.2.2",
     "primevue": "^4.0.4",
