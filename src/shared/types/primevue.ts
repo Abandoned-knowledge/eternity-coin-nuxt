@@ -1,0 +1,1 @@
+export type primeVueSeverity = "success" | "info" | "warn" | "error" | "secondary" | "contrast";
