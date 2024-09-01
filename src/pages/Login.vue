@@ -3,6 +3,8 @@ const { defineField, errors, handleSubmit } = useForm({
   validationSchema: FormLoginSchema,
 });
 
+const loading = ref(false);
+
 const [login] = defineField("login");
 const [password] = defineField("password");
 
@@ -43,7 +45,7 @@ definePageMeta({
         <small class="field__error">{{ errors.password }}</small>
       </div>
 
-      <Button label="Login" type="submit" severity="contrast" />
+      <Button :loading="loading" label="Login" type="submit" severity="contrast" />
     </form>
   </FrameLayout>
 </template>
