@@ -1,7 +1,7 @@
 export const useUserStore = defineStore("user", () => {
   const user = ref<IUser | null>(null);
 
-  function getUser() {
+  function fetchUser() {
     const userLocalStorage = localStorage.getItem("user");
     if (userLocalStorage) user.value = JSON.parse(userLocalStorage);
   }
@@ -12,5 +12,5 @@ export const useUserStore = defineStore("user", () => {
     navigateTo("/login");
   }
 
-  return { user, getUser, logOut };
+  return { user, fetchUser, logOut };
 });
