@@ -5,12 +5,12 @@ const { defineField, errors, handleSubmit } = useForm({
 
 const loading = ref(false);
 
-const toast = useToast();
 const [login] = defineField("login");
 const [name] = defineField("name");
 const [password] = defineField("password");
 const [password_confirm] = defineField("password_confirm");
 
+const toast = useToast();
 function showToast(severity?: primeVueSeverity, msg: string) {
   toast.add({ severity: severity, detail: msg, life: 2000 });
 }
