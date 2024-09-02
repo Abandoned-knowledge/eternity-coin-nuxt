@@ -35,7 +35,7 @@ const onSubmit = handleSubmit((values) => {
   </Button>
 
   <Dialog v-model:visible="isVisible" header="Add Transaction" modal class="custom-dialog">
-    <form @submit="onSubmit" class="form">
+    <form @submit="onSubmit" class="form" v-if="categoryStore.income || categoryStore.income">
       <div class="field">
         <SelectButton
           v-model="type"
@@ -68,5 +68,10 @@ const onSubmit = handleSubmit((values) => {
 
       <Button type="submit" label="ADD" severity="contrast" />
     </form>
+
+    <div class="flex flex-col items-center gap-5" v-else>
+      <p class="text-title font-bold">Seems, you do not have categories</p>
+      <Button label="create" severity="contrast" as="router-link" to="/categories" />
+    </div>
   </Dialog>
 </template>
