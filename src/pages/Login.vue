@@ -8,8 +8,27 @@ const loading = ref(false);
 const [login] = defineField("login");
 const [password] = defineField("password");
 
-const onSubmit = handleSubmit((values) => {
-  console.log(values);
+const toast = useToast();
+function showToast(severity: primeVueSeverity, msg: string) {
+  toast.add({ severity: severity, detail: msg, life: 2000 });
+}
+
+const onSubmit = handleSubmit(async (values) => {
+  const response = await $fetch("/api/users/get", {
+    method: "post",
+    body: {
+      login: values.login,
+      password: values.password,
+    },
+  });
+  
+  if (typeof response == "string") {
+    return showToast("error", response);
+  } else if (typeof response == "object") {
+    showToast("success", `Welcome back! ${response?.name}`);
+    localStorage.setItem("user", JSON.stringify(response));
+    return navigateTo("/");
+  }
 });
 
 definePageMeta({
