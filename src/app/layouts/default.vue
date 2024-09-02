@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import UpdateCategory from "~/features/Popup/UpdateCategory";
+const userStore = useUserStore();
+
 onMounted(() => {
+  userStore.fetchUser();
   isLogin();
 });
 </script>
