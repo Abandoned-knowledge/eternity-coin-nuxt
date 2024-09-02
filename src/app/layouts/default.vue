@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import UpdateCategory from "~/features/Popup/UpdateCategory";
+onMounted(() => {
+  isLogin();
+});
 </script>
 
 <template>
