@@ -10,7 +10,8 @@ export default defineEventHandler(async (event) => {
     .from("users")
     .select("*")
     .eq("login", login)
-    .eq("password", password);
+    .eq("password", password)
+    .single();
 
-  return response?.length ? (response[0] as IUser) : "User is not find";
+  return response ? (response as IUser) : "User is not find";
 });
