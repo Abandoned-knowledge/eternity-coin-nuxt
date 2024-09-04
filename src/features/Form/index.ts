@@ -4,6 +4,7 @@ import {
   FormAddTransactionSchema,
   FormChangePasswordSchema,
   FormChangeNameSchema,
+  FormCreateCategorySchema,
 } from "./model/schema";
 
 export {
@@ -12,4 +13,5 @@ export {
   FormAddTransactionSchema,
   FormChangePasswordSchema,
   FormChangeNameSchema,
+  FormCreateCategorySchema,
 };

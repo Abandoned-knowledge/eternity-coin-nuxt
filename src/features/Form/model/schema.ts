@@ -1,4 +1,4 @@
-import { object, string, ref, number, type ObjectShape } from "yup";
+import { object, string, ref, number } from "yup";
 
 export const FormLoginSchema = object({
   login: string().required().email().label("Email address"),
@@ -28,4 +28,10 @@ export const FormChangePasswordSchema = object({
 
 export const FormChangeNameSchema = object({
   name: string().required().label("Name"),
+});
+
+export const FormCreateCategorySchema = object({
+  label: string().required().label("Label"),
+  color: string().required().label("Color"),
+  type: string().required().label("Transaction type"),
 });
