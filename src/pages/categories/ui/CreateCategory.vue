@@ -8,32 +8,36 @@ const { defineField, errors, handleSubmit } = useForm({
   },
 });
 
+const userStore = useUserStore();
+const categoryStore = useCategoryStore();
+
 const supabase = useSupabaseClient();
+const toast = useToast();
 
 const [label] = defineField("label");
 const [color] = defineField("color");
 const [type] = defineField("type");
-
 const options = ref<transactionType[]>(["expense", "income"]);
 
-const user = useUserStore();
-const toast = useToast();
 function showToast(severity: primeVueSeverity, msg: string) {
   toast.add({ severity: severity, detail: msg, life: 2000 });
 }
 
 const onSubmit = handleSubmit(async (values) => {
-  if (user.user) {
+  if (userStore.user) {
     const { error } = await supabase.from("categories").insert({
-      user_id: user.user.user_id,
+      user_id: userStore.user.user_id,
       label: String(values.label),
-      color: String(values.color),
+      color: String(`#${values.color}`),
       type: String(values.type),
     });
 
-    return error
-      ? showToast("error", error.message)
-      : showToast("success", `Create the new category - ${values.label}`);
+    if (error) {
+      showToast("error", error.message);
+    } else {
+      showToast("success", `Create the new category - ${values.label}`);
+      values.type == "income" ? categoryStore.fetchIncome() : categoryStore.fetchIncome();
+    }
   }
 });
 </script>

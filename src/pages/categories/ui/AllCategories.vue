@@ -14,7 +14,7 @@ function clickHandle(category: CategoryItem) {
 </script>
 
 <template>
-  <FrameLayout :title="title" v-if="categories">
+  <FrameLayout :title="title">
     <div class="flex flex-wrap gap-1">
       <CategoryItem
         @click="clickHandle(category)"

@@ -1,5 +1,13 @@
 <script setup lang="ts">
+const userStore = useUserStore();
+const categoryStore = useCategoryStore();
+const transactionStore = useTransactionStore();
 const windowStore = useWindowStore();
+
+watch(userStore, () => {
+  categoryStore.fetchExpense();
+  categoryStore.fetchIncome();
+});
 
 onMounted(() => {
   windowStore.isMobile = window.innerWidth <= 768;
