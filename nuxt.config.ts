@@ -6,37 +6,32 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "dayjs-nuxt",
     "@primevue/nuxt-module",
-    '@vee-validate/nuxt',
-    "@nuxtjs/supabase"
+    "@vee-validate/nuxt",
+    "@nuxtjs/supabase",
   ],
   srcDir: "src/",
 
   ssr: true,
 
+  vite: {
+    server: {
+      hmr: false,
+    },
+  },
+
   dir: {
     layouts: "app/layouts",
   },
 
-  css: ['~/app/style/main.scss'],
+  css: ["~/app/style/main.scss"],
 
   components: {
-    dirs: [
-      "shared/icons/ui/", 
-      "widgets/", 
-      "shared/layouts/frame/ui/",
-      "shared/components/",
-    ],
+    dirs: ["shared/icons/ui/", "widgets/", "shared/layouts/frame/ui/", "shared/components/"],
   },
-  serverDir: 'server/',
+  serverDir: "server/",
   imports: {
     autoImport: true,
-    dirs: [
-      "shared/composables",
-      "shared/helpers",
-      "shared/store",
-      "shared/types",
-      "features/Form",
-    ],
+    dirs: ["shared/composables", "shared/helpers", "shared/store", "shared/types", "features/Form"],
   },
 
   supabase: {
@@ -56,5 +51,5 @@ export default defineNuxtConfig({
   },
   veeValidate: {
     autoImports: true,
-  }
+  },
 });
