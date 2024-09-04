@@ -14,19 +14,24 @@ function showToast(severity: primeVueSeverity, msg: string) {
 }
 
 const onSubmit = handleSubmit(async (values) => {
-  const response = await $fetch("/api/users/get", {
+  const { data, error } = await $fetch("/api/users/get", {
     method: "post",
     body: {
-      login: values.login,
-      password: values.password,
+      login: String(values.login),
+      password: String(values.password),
     },
   });
-  
-  if (typeof response == "string") {
-    return showToast("error", response);
-  } else if (typeof response == "object") {
-    showToast("success", `Welcome back! ${response?.name}`);
-    localStorage.setItem("user", JSON.stringify(response));
+
+  if (error) {
+    return showToast("error", "error");
+  } else {
+    showToast("success", `Welcome back!`);
+    const user: IUser = {
+      user_id: data.user?.id,
+      login: data.user?.email,
+      name: "test-mock-name",
+    };
+    localStorage.setItem("user", JSON.stringify(user));
     return navigateTo("/");
   }
 });

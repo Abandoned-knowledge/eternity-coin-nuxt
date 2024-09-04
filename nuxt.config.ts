@@ -11,6 +11,8 @@ export default defineNuxtConfig({
   ],
   srcDir: "src/",
 
+  ssr: true,
+
   dir: {
     layouts: "app/layouts",
   },
