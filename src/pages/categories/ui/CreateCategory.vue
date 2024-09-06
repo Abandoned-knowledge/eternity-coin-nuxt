@@ -36,7 +36,7 @@ const onSubmit = handleSubmit(async (values) => {
       showToast("error", error.message);
     } else {
       showToast("success", `Create the new category - ${values.label}`);
-      values.type == "income" ? categoryStore.fetchIncome() : categoryStore.fetchIncome();
+      values.type == "income" ? categoryStore.fetchIncome() : categoryStore.fetchExpense();
     }
   }
 });
