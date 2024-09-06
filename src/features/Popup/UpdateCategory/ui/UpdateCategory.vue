@@ -46,6 +46,26 @@ async function submitForm() {
     }
   }
 }
+const nestedDialogVisible = ref(false);
+async function deleteCategory() {
+  if (categoryStore.currentCategory?.id) {
+    const { error } = await supabase
+      .from("categories")
+      .delete()
+      .eq("id", categoryStore.currentCategory.id);
+
+    if (error) {
+      showToast("error", error.message);
+    } else {
+      showToast("success", `Delete category - ${categoryStore.currentCategory.label}`);
+      await (categoryStore.currentCategory.type == "income"
+        ? categoryStore.fetchIncome()
+        : categoryStore.fetchExpense());
+      nestedDialogVisible.value = false;
+      categoryStore.updateCategoryIsVisible = false;
+    }
+  }
+}
 </script>
 
 <template>
@@ -67,6 +87,36 @@ async function submitForm() {
       </div>
 
       <Button label="submit" type="submit" severity="contrast" />
+      <Button
+        @click="nestedDialogVisible = true"
+        size="small"
+        label="delete"
+        severity="danger"
+        outlined
+      />
+
+      <Dialog header="Delete category" v-model:visible="nestedDialogVisible" modal>
+        <div class="flex flex-col gap-2">
+          <p>
+            Are you sure want do delete category -
+            <span :style="{ color: categoryStore.currentCategory?.color }">{{
+              categoryStore.currentCategory?.label
+            }}</span>
+            ?
+          </p>
+          <p class="text-center">All transactions will also be deleted</p>
+        </div>
+
+        <div class="mt-10 flex justify-center gap-4">
+          <Button @click="deleteCategory" label="Delete" severity="danger" size="small" />
+          <Button
+            @click="nestedDialogVisible = false"
+            label="Cancel"
+            severity="contrast"
+            size="small"
+          />
+        </div>
+      </Dialog>
     </form>
   </Dialog>
 </template>
