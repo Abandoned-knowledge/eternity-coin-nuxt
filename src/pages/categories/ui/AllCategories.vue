@@ -11,20 +11,19 @@ function clickHandle(category: CategoryItem) {
   categoryStore.currentCategory = category;
   categoryStore.updateCategoryIsVisible = true;
 }
+
 </script>
 
 <template>
   <FrameLayout :title="title">
     <div class="flex flex-wrap gap-1">
       <CategoryItem
-        @click="clickHandle(category)"
-        v-for="category in categories"
-        :key="category.category_id"
-        :label="category.label"
-        :color="category.color"
+        @click="clickHandle(cat)"
+        v-for="cat in categories"
+        :key="`${cat.label} - ${cat.color}`"
+        :label="cat.label"
+        :color="cat.color"
       />
     </div>
   </FrameLayout>
 </template>
-
-<style lang="scss" scoped></style>
