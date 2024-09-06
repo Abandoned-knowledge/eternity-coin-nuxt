@@ -18,7 +18,7 @@ function clickHandle(current: clickedButton, color: string, category: CategoryIt
       outlined
       @click="clickHandle($event.target, category.color, category)"
       v-for="category in categories"
-      :key="category.category_id"
+      :key="`${category.label} -${category.color}`"
       :label="category.label"
       :color="category.color"
     />
