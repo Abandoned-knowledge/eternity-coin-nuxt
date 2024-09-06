@@ -1,5 +1,6 @@
 export interface CategoryItem {
-  category_id: number;
+  id: string;
   label: string;
   color: string;
+  type: transactionType;
 }
