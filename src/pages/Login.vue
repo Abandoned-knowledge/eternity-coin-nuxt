@@ -26,12 +26,6 @@ const onSubmit = handleSubmit(async (values) => {
     return showToast("error", "error");
   } else {
     showToast("success", `Welcome back!`);
-    const user: IUser = {
-      user_id: data.user?.id,
-      login: data.user?.email,
-      name: "test-mock-name",
-    };
-    localStorage.setItem("user", JSON.stringify(user));
     return navigateTo("/");
   }
 });

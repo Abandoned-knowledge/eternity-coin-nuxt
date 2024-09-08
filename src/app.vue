@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const userStore = useUserStore();
+const user = useSupabaseUser();
 const categoryStore = useCategoryStore();
 const transactionStore = useTransactionStore();
 const windowStore = useWindowStore();
 
-watch(userStore, () => {
+watch(user, () => {
   categoryStore.fetchExpense();
   categoryStore.fetchIncome();
 });

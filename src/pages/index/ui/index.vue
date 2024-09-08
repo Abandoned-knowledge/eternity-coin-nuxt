@@ -1,13 +1,11 @@
 <script setup lang="ts">
 const tabs: transactionType[] = ["expense", "income"];
 const windowStore = useWindowStore();
+const user = useSupabaseUser();
 </script>
 
 <template>
-  <div
-    v-if="!windowStore.isMobile"
-    class="grid grid-cols-2 justify-between gap-5 xl:grid-cols-3"
-  >
+  <div v-if="!windowStore.isMobile" class="grid grid-cols-2 justify-between gap-5 xl:grid-cols-3">
     <PopupAddTransaction />
     <ChartDonut type="income" class="xl:order-1" />
     <ChartDonut type="expense" class="xl:order-3" />

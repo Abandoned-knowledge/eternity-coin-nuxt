@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const categoryStore = useCategoryStore();
-const userStore = useUserStore();
+const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 const toast = useToast();
 
@@ -20,7 +20,7 @@ watch(categoryStore, () => {
 });
 
 async function submitForm() {
-  if (userStore.user && categoryStore.currentCategory) {
+  if (user.value && categoryStore.currentCategory) {
     const updatedLabel = newLabel.value ? newLabel.value : defaultLabel.value;
     const updatedColor = newColor.value?.slice(0, 1) == "#" ? newColor.value : `#${newColor.value}`;
 

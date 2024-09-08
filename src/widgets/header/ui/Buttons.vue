@@ -1,14 +1,19 @@
 <script setup lang="ts">
-const userStore = useUserStore();
-const loading = computed(() => !userStore.user);
+const user = useSupabaseUser();
+const loading = computed(() => !user.value);
+const supabase = useSupabaseClient();
 
-const label = computed(() => (userStore.user ? userStore.user.name : "waiting"));
+const label = computed(() => (user.value ? user.value.email : "waiting"));
+
+async function logOut() {
+  await supabase.auth.signOut();
+}
 </script>
 
 <template>
   <div class="flex gap-3">
     <Button :loading="loading" :label="label" severity="contrast" as="router-link" to="/profile" />
-    <Button @click="userStore.logOut" class="aspect-square" severity="danger" outlined>
+    <Button @click="logOut" class="aspect-square" severity="danger" outlined>
       <LogOutIcon class="h-full w-full" />
     </Button>
   </div>

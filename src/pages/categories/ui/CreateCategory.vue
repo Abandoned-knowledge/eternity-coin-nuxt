@@ -8,7 +8,7 @@ const { defineField, errors, handleSubmit } = useForm({
   },
 });
 
-const userStore = useUserStore();
+const user = useSupabaseUser();
 const categoryStore = useCategoryStore();
 
 const toast = useToast();
@@ -23,8 +23,8 @@ function showToast(severity: primeVueSeverity, msg: string) {
 }
 
 const onSubmit = handleSubmit(async (values) => {
-  if (userStore.user) {
-    const { error } = await $fetch(`/api/categories?user_id=${userStore.user.user_id}`, {
+  if (user.value) {
+    const { error } = await $fetch(`/api/categories?user_id=${user.value.id}`, {
       method: "post",
       body: {
         label: values.label,

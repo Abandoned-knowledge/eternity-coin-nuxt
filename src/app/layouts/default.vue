@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import UpdateCategory from "~/features/Popup/UpdateCategory";
-const userStore = useUserStore();
+const user = useSupabaseUser();
+function customIsLogin() {
+  if (!user.value) navigateTo("/login");
+}
 
 onMounted(() => {
-  userStore.fetchUser();
-  isLogin();
+  customIsLogin();
 });
 </script>
 
