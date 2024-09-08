@@ -11,7 +11,6 @@ const { defineField, errors, handleSubmit } = useForm({
 const userStore = useUserStore();
 const categoryStore = useCategoryStore();
 
-const supabase = useSupabaseClient();
 const toast = useToast();
 
 const [label] = defineField("label");
@@ -25,11 +24,13 @@ function showToast(severity: primeVueSeverity, msg: string) {
 
 const onSubmit = handleSubmit(async (values) => {
   if (userStore.user) {
-    const { error } = await supabase.from("categories").insert({
-      user_id: userStore.user.user_id,
-      label: String(values.label),
-      color: String(`#${values.color}`),
-      type: String(values.type),
+    const { error } = await $fetch(`/api/categories?user_id=${userStore.user.user_id}`, {
+      method: "post",
+      body: {
+        label: values.label,
+        color: values.color,
+        type: values.type,
+      },
     });
 
     if (error) {
