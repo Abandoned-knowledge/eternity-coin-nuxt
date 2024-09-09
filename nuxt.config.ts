@@ -23,7 +23,7 @@ export default defineNuxtConfig({
 
   dir: {
     layouts: "app/layouts",
-    middleware: "app/middleware",
+    // middleware: "app/middleware",
   },
 
   css: ["~/app/style/main.scss"],
@@ -37,9 +37,6 @@ export default defineNuxtConfig({
     dirs: ["shared/composables", "shared/helpers", "shared/store", "shared/types", "features/Form"],
   },
 
-  supabase: {
-    redirect: false,
-  },
   googleFonts: {
     families: {
       Jost: [400, 500, 700],
