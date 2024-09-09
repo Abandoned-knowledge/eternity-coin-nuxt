@@ -14,9 +14,8 @@ function showToast(severity: primeVueSeverity, msg: string) {
 }
 
 const onSubmit = handleSubmit(async (values) => {
-  const { data, error } = await $fetch("/api/users/get", {
-    method: "post",
-    body: {
+  const { error } = await $fetch("/api/users", {
+    params: {
       login: String(values.login),
       password: String(values.password),
     },
