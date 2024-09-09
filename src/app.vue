@@ -14,6 +14,7 @@ onMounted(() => {
   categoryStore.fetchIncome();
   transactionStore.fetchIncome();
   transactionStore.fetchExpense();
+  transactionStore.fetchAll();
 });
 </script>
 

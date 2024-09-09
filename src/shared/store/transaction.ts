@@ -31,6 +31,17 @@ export const useTransactionStore = defineStore("transaction", () => {
     error ? (expenseData.value = null) : (expenseData.value = <ITransactionData[]>data);
   }
 
+  async function fetchAll() {    
+    const { data, error } = await $fetch("/api/transactions", {
+      method: "get",
+      params: {
+        user_id: user.value?.id,
+      },
+    });
+
+    error ? (allData.value = null) : (allData.value = <ITransactionData[]>data);
+  }
+
   return {
     donutChartDataExpense,
     donutChartDataIncome,
@@ -41,5 +52,6 @@ export const useTransactionStore = defineStore("transaction", () => {
     allData,
     fetchIncome,
     fetchExpense,
+    fetchAll,
   };
 });
