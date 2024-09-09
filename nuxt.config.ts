@@ -11,7 +11,9 @@ export default defineNuxtConfig({
   ],
   srcDir: "src/",
 
-  ssr: true,
+  devtools: {
+    enabled: true,
+  },
 
   vite: {
     server: {
@@ -21,6 +23,7 @@ export default defineNuxtConfig({
 
   dir: {
     layouts: "app/layouts",
+    middleware: "app/middleware",
   },
 
   css: ["~/app/style/main.scss"],
