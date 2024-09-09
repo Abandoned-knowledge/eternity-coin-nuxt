@@ -1,5 +1,5 @@
 export const useCategoryStore = defineStore("category", () => {
-  const userStore = useUserStore();
+  const user = useSupabaseUser();
 
   const currentCategory = ref<CategoryItem | null>(null);
   const updateCategoryIsVisible = ref<boolean>(false);
@@ -7,19 +7,25 @@ export const useCategoryStore = defineStore("category", () => {
   const expense = ref<CategoryItem[] | null>(null);
 
   async function fetchIncome() {
-    if (userStore.user) {
-      const { data, error } = await $fetch(
-        `/api/categories/income?user_id=${userStore.user.user_id}`,
-      );
+    if (user.value) {
+      const { data, error } = await $fetch("/api/categories", {
+        params: {
+          type: "income",
+          user_id: user.value.id,
+        },
+      });
       income.value = !error && data.length > 0 ? data : null;
     }
   }
 
   async function fetchExpense() {
-    if (userStore.user) {
-      const { data, error } = await $fetch(
-        `/api/categories/expense?user_id=${userStore.user.user_id}`,
-      );
+    if (user.value) {
+      const { data, error } = await $fetch("/api/categories", {
+        params: {
+          type: "expense",
+          user_id: user.value.id,
+        },
+      });
       expense.value = !error && data.length > 0 ? data : null;
     }
   }

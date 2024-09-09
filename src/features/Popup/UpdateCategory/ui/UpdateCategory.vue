@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const categoryStore = useCategoryStore();
 const user = useSupabaseUser();
-const supabase = useSupabaseClient();
 const toast = useToast();
 
 function showToast(severity: primeVueSeverity, msg: string) {
@@ -21,16 +20,13 @@ watch(categoryStore, () => {
 
 async function submitForm() {
   if (user.value && categoryStore.currentCategory) {
-    const updatedLabel = newLabel.value ? newLabel.value : defaultLabel.value;
-    const updatedColor = newColor.value?.slice(0, 1) == "#" ? newColor.value : `#${newColor.value}`;
-
-    const { error } = await supabase
-      .from("categories")
-      .update({
-        label: updatedLabel,
-        color: updatedColor,
-      })
-      .eq("id", categoryStore.currentCategory.id);
+    const { error } = await $fetch(`/api/categories/${categoryStore.currentCategory.id}`, {
+      method: "put",
+      body: {
+        label: newLabel.value ? newLabel.value : defaultLabel.value,
+        color: newColor.value?.slice(0, 1) == "#" ? newColor.value : `#${newColor.value}`,
+      },
+    });
 
     if (error) {
       showToast("error", error.message);
@@ -49,10 +45,9 @@ async function submitForm() {
 const nestedDialogVisible = ref(false);
 async function deleteCategory() {
   if (categoryStore.currentCategory?.id) {
-    const { error } = await supabase
-      .from("categories")
-      .delete()
-      .eq("id", categoryStore.currentCategory.id);
+    const { error } = await $fetch(`/api/categories/${categoryStore.currentCategory.id}`, {
+      method: "delete",
+    });
 
     if (error) {
       showToast("error", error.message);
