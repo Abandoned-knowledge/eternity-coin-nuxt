@@ -1,13 +1,7 @@
 <script setup lang="ts">
-const user = useSupabaseUser();
 const categoryStore = useCategoryStore();
 const transactionStore = useTransactionStore();
 const windowStore = useWindowStore();
-
-watch(user, () => {
-  categoryStore.fetchExpense();
-  categoryStore.fetchIncome();
-});
 
 onMounted(() => {
   windowStore.isMobile = window.innerWidth <= 768;
@@ -15,6 +9,9 @@ onMounted(() => {
     const width = this.innerWidth;
     windowStore.isMobile = width <= 768;
   });
+
+  categoryStore.fetchExpense();
+  categoryStore.fetchIncome();
 });
 </script>
 
