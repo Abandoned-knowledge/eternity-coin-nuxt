@@ -28,6 +28,7 @@ const isEmpty = computed(() => {
   <FrameLayout>
     <EmptyTableFrame v-if="isEmpty" />
     <DataTable
+      size="small"
       v-else
       striped-rows
       paginator
@@ -35,8 +36,8 @@ const isEmpty = computed(() => {
       :rowsPerPageOptions="[5, 10, 20, 50]"
       :value="data"
     >
-      <Column field="date" header="Date" sortable/>
-      <Column field="value" header="Value" sortable/>
+      <Column field="date" header="Date" sortable />
+      <Column field="value" header="Value" sortable />
       <Column field="categories.label" header="Category" class="flex justify-center" sortable>
         <template #body="slotProps">
           <CategoryItem
