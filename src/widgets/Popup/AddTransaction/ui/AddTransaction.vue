@@ -7,21 +7,47 @@ const { defineField, errors, handleSubmit } = useForm({
     type: "expense" as transactionType,
     value: null,
     description: "",
+    date: new Date(),
   },
 });
 
-const categoryStore = useCategoryStore();
+const toast = useToast();
+function showToast(severity: primeVueSeverity, msg: string) {
+  toast.add({ severity: severity, detail: msg, life: 2000 });
+}
 
+const categoryStore = useCategoryStore();
 const isVisible = ref(false);
 const [value] = defineField("value");
 const [description] = defineField("description");
 const [type] = defineField("type");
-
-const categoryId = computed(() => categoryStore.currentCategory?.category_id);
+const [date] = defineField("date");
 const options = ref<transactionType[]>(["expense", "income"]);
 
-const onSubmit = handleSubmit((values) => {
-  console.log(values);
+watch(type, () => (categoryStore.currentCategory = null));
+
+const onSubmit = handleSubmit(async (values) => {
+  if (categoryStore.currentCategory) {
+    const { error, data } = await $fetch("/api/transactions", {
+      method: "post",
+      body: {
+        value: values.value,
+        date: values.date,
+        description: values.description,
+        category_id: categoryStore.currentCategory?.id,
+      },
+    });
+
+    if (error) {
+      showToast("error", error.message);
+    } else {
+      showToast(
+        "success",
+        `Create the new transaction \n${categoryStore.currentCategory?.label} -- ${values.value}`,
+      );
+      values.type == "income" ? categoryStore.fetchIncome() : categoryStore.fetchExpense();
+    }
+  }
 });
 </script>
 
@@ -33,7 +59,6 @@ const onSubmit = handleSubmit((values) => {
   >
     Add
   </Button>
-
   <Dialog v-model:visible="isVisible" header="Add Transaction" modal class="custom-dialog">
     <form @submit="onSubmit" class="form" v-if="categoryStore.income || categoryStore.income">
       <div class="field">
@@ -64,7 +89,17 @@ const onSubmit = handleSubmit((values) => {
         <small class="field__error">{{ errors.description }}</small>
       </div>
 
-      <Categories :type="type" />
+      <div class="field flex flex-col items-center gap-2">
+        <Categories :type="type" />
+        <small class="field__error" v-if="!categoryStore.currentCategory"
+          >Category is a required field</small
+        >
+      </div>
+
+      <div class="field flex flex-col items-center justify-center gap-2">
+        <DatePicker v-model="date" showIcon iconDisplay="input" :invalid="!!errors.date" />
+        <small class="field__error">{{ errors.date }}</small>
+      </div>
 
       <Button type="submit" label="ADD" severity="contrast" />
     </form>
