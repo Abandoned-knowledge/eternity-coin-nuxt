@@ -35,13 +35,14 @@ const isEmpty = computed(() => {
       :rowsPerPageOptions="[5, 10, 20, 50]"
       :value="data"
     >
-      <Column field="date" header="Date" />
-      <Column field="value" header="Value" />
-      <Column header="Category" class="flex justify-center">
+      <Column field="date" header="Date" sortable/>
+      <Column field="value" header="Value" sortable/>
+      <Column field="categories.label" header="Category" class="flex justify-center" sortable>
         <template #body="slotProps">
           <CategoryItem
-            :color="slotProps.data.category.color"
-            :label="slotProps.data.category.label"
+            :color="slotProps.data.categories.color"
+            :label="slotProps.data.categories.label"
+            :key="`${slotProps.data.categories.label} - ${slotProps.data.categories.color}`"
           />
         </template>
       </Column>
