@@ -1,9 +1,8 @@
 export type transactionType = "income" | "expense";
 
 export interface ITransactionData {
-  transaction_id: number;
-  user_id: number;
+  transaction_id: string;
   date: string;
   value: number;
-  category: CategoryItem;
+  categories: CategoryItem;
 }
