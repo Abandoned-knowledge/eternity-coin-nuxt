@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import UpdateCategory from "~/features/Popup/UpdateCategory";
+import DeleteTransaction from "~/features/Popup/DeleteTransaction";
 const user = useSupabaseUser();
+
 function customIsLogin() {
   if (!user.value) navigateTo("/login");
 }
-
-onMounted(() => {
-  customIsLogin();
-});
 </script>
 
 <template>
@@ -15,5 +13,6 @@ onMounted(() => {
   <main class="container mt-5 flex-grow">
     <slot />
     <UpdateCategory />
+    <DeleteTransaction />
   </main>
 </template>

@@ -1,5 +1,7 @@
 export const useTransactionStore = defineStore("transaction", () => {
   const user = useSupabaseUser();
+  const dialogDeleteIsVisible = ref(false);
+  const currentTransaction = ref<ITransactionData | null>(null);
 
   const donutChartDataIncome = ref<donutData[] | null>(null);
   const donutChartDataExpense = ref<donutData[] | null>(null);
@@ -31,7 +33,7 @@ export const useTransactionStore = defineStore("transaction", () => {
     error ? (expenseData.value = null) : (expenseData.value = <ITransactionData[]>data);
   }
 
-  async function fetchAll() {    
+  async function fetchAll() {
     const { data, error } = await $fetch("/api/transactions", {
       method: "get",
       params: {
@@ -43,6 +45,7 @@ export const useTransactionStore = defineStore("transaction", () => {
   }
 
   return {
+    currentTransaction,
     donutChartDataExpense,
     donutChartDataIncome,
     lineChartDataIncome,
@@ -53,5 +56,6 @@ export const useTransactionStore = defineStore("transaction", () => {
     fetchIncome,
     fetchExpense,
     fetchAll,
+    dialogDeleteIsVisible,
   };
 });

@@ -22,6 +22,11 @@ const isEmpty = computed(() => {
     return transactionStore.allData == null;
   }
 });
+
+function setTransaction(transaction: ITransactionData) {
+  transactionStore.currentTransaction = transaction;
+  transactionStore.dialogDeleteIsVisible = true;
+}
 </script>
 
 <template>
@@ -38,13 +43,20 @@ const isEmpty = computed(() => {
     >
       <Column field="date" header="Date" sortable />
       <Column field="value" header="Value" sortable />
-      <Column field="categories.label" header="Category" class="flex justify-center" sortable>
+      <Column sort-field="categories.label" header="Category" class="flex justify-center" sortable>
         <template #body="slotProps">
           <CategoryItem
             :color="slotProps.data.categories.color"
             :label="slotProps.data.categories.label"
             :key="`${slotProps.data.categories.label} - ${slotProps.data.categories.color}`"
           />
+        </template>
+      </Column>
+      <Column header="Action">
+        <template #body="slotProps">
+          <Button size="small" severity="danger" outlined @click="setTransaction(slotProps.data)">
+            <DeleteIcon />
+          </Button>
         </template>
       </Column>
     </DataTable>

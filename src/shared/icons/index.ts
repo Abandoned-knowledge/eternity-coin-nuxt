@@ -8,6 +8,7 @@ import LogoIcon from "./ui/LogoIcon.vue";
 import LogoutIcon from "./ui/LogOutIcon.vue";
 import ProfileIcon from "./ui/ProfileIcon.vue";
 import EmptyTableIcon from "./ui/EmptyTableIcon.vue";
+import DeleteIcon from "./ui/DeleteIcon.vue";
 
 export {
   BurgerIcon,
@@ -20,4 +21,5 @@ export {
   EmptyDonutChartIcon,
   EmptyLineChartIcon,
   EmptyTableIcon,
+  DeleteIcon,
 };
