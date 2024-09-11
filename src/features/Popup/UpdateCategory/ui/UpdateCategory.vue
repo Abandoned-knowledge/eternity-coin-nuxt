@@ -2,6 +2,7 @@
 const categoryStore = useCategoryStore();
 const user = useSupabaseUser();
 const toast = useToast();
+const nestedDialogVisible = ref(false);
 
 function showToast(severity: primeVueSeverity, msg: string) {
   toast.add({ severity: severity, detail: msg, life: 2000 });
@@ -42,7 +43,6 @@ async function submitForm() {
     }
   }
 }
-const nestedDialogVisible = ref(false);
 async function deleteCategory() {
   if (categoryStore.currentCategory?.id) {
     const { error } = await $fetch(`/api/categories/${categoryStore.currentCategory.id}`, {
