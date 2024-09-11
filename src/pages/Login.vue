@@ -12,20 +12,25 @@ const toast = useToast();
 function showToast(severity: primeVueSeverity, msg: string) {
   toast.add({ severity: severity, detail: msg, life: 2000 });
 }
-
+const supabase = useSupabaseClient();
 const onSubmit = handleSubmit(async (values) => {
-  const { error } = await $fetch("/api/users", {
-    params: {
-      login: String(values.login),
-      password: String(values.password),
-    },
+  // const { error } = await $fetch("/api/users", {
+  //   params: {
+  //     login: String(values.login),
+  //     password: String(values.password),
+  //   },
+  // });
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email: String(values.login),
+    password: String(values.password),
   });
 
   if (error) {
     return showToast("error", "error");
   } else {
     showToast("success", `Welcome back!`);
-    return navigateTo("/");
+    // setTimeout(() => navigateTo("/"), 1000);
   }
 });
 
