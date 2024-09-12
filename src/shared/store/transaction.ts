@@ -12,7 +12,7 @@ export const useTransactionStore = defineStore("transaction", () => {
   const allData = ref<ITransactionData[] | null>(null);
 
   async function fetchIncome() {
-    const { data, error } = await $fetch("/api/transactions/income", {
+    const { data, error } = await $fetch("/api/transactions/get/income", {
       method: "get",
       params: {
         user_id: user.value?.id,
@@ -23,7 +23,7 @@ export const useTransactionStore = defineStore("transaction", () => {
   }
 
   async function fetchExpense() {
-    const { data, error } = await $fetch("/api/transactions/expense", {
+    const { data, error } = await $fetch("/api/transactions/get/expense", {
       method: "get",
       params: {
         user_id: user.value?.id,
@@ -72,13 +72,21 @@ export const useTransactionStore = defineStore("transaction", () => {
     });
 
     if (transaction_type == "income") {
-      error 
-        ? (lineChartDataIncome.value = null) 
-        : (lineChartDataIncome.value = data as lineData[]);
+      error ? (lineChartDataIncome.value = null) : (lineChartDataIncome.value = data as lineData[]);
     } else {
       error
         ? (lineChartDataExpense.value = null)
         : (lineChartDataExpense.value = data as lineData[]);
+    }
+  }
+
+  async function fetchAllChartData(transaction_type: transactionType) {
+    if (transaction_type == "income") {
+      fetchDonutData("income");
+      fetchLineData("income");
+    } else {
+      fetchDonutData("expense");
+      fetchLineData("expense");
     }
   }
 
@@ -97,5 +105,6 @@ export const useTransactionStore = defineStore("transaction", () => {
     fetchAll,
     fetchDonutData,
     fetchLineData,
+    fetchAllChartData,
   };
 });
