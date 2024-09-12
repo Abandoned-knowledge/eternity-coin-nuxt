@@ -5,6 +5,6 @@ export interface donutData {
 }
 
 export interface lineData {
-  date: string;
+  month_name: string;
   value: number;
 }

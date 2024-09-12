@@ -1,14 +1,20 @@
 <script setup lang="ts">
-const props = defineProps<{ type: transactionType | 'all' }>();
+const props = defineProps<{ type: transactionType | "all" }>();
 import Canvas from "@/features/Chart/Line";
 import EmptyLineFrame from "./EmptyLineFrame.vue";
 
 const transactionStore = useTransactionStore();
 
 const isEmpty = computed(() => {
-  return props.type == "income"
-    ? transactionStore.lineChartDataIncome == null
-    : transactionStore.lineChartDataExpense == null;
+  if (props.type == "income") {
+    return transactionStore.lineChartDataIncome == null;
+  } else if (props.type == "expense") {
+    return transactionStore.lineChartDataExpense == null;
+  } else {
+    return (
+      transactionStore.lineChartDataIncome == null && transactionStore.lineChartDataExpense == null
+    );
+  }
 });
 </script>
 

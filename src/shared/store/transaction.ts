@@ -72,7 +72,9 @@ export const useTransactionStore = defineStore("transaction", () => {
     });
 
     if (transaction_type == "income") {
-      error ? (lineChartDataIncome.value = null) : (lineChartDataIncome.value = data as lineData[]);
+      error 
+        ? (lineChartDataIncome.value = null) 
+        : (lineChartDataIncome.value = data as lineData[]);
     } else {
       error
         ? (lineChartDataExpense.value = null)
@@ -89,10 +91,10 @@ export const useTransactionStore = defineStore("transaction", () => {
     incomeData,
     expenseData,
     allData,
+    dialogDeleteIsVisible,
     fetchIncome,
     fetchExpense,
     fetchAll,
-    dialogDeleteIsVisible,
     fetchDonutData,
     fetchLineData,
   };

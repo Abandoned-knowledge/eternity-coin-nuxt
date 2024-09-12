@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Chart, ChartData, ChartDataset } from "chart.js";
+import type { ChartData, ChartDataset } from "chart.js";
 import { options } from "..";
 const props = defineProps<{ type: transactionType | "all" }>();
 const tailwindColors = tailwindConfig.theme.colors;
@@ -18,7 +18,7 @@ const data =
 const datasetItem = computed(() => {
   return {
     label: props.type,
-    data: data!.map((el) => el.value),
+    data: data ? data.map((el) => el.value) : [],
     borderColor: borderColor.value,
   } as ChartDataset;
 });
@@ -26,7 +26,9 @@ const datasetItem = computed(() => {
 const firstDatasetItem = computed(() => {
   return {
     label: "Income",
-    data: transactionStore.lineChartDataIncome!.map((el) => el.value),
+    data: transactionStore.lineChartDataIncome
+      ? transactionStore.lineChartDataIncome.map((el) => el.value)
+      : [],
     borderColor: tailwindColors.income,
   } as ChartDataset;
 });
@@ -34,7 +36,9 @@ const firstDatasetItem = computed(() => {
 const secondDatasetItem = computed(() => {
   return {
     label: "Expense",
-    data: transactionStore.lineChartDataExpense!.map((el) => el.value),
+    data: transactionStore.lineChartDataExpense
+      ? transactionStore.lineChartDataExpense.map((el) => el.value)
+      : [],
     borderColor: tailwindColors.expense,
   } as ChartDataset;
 });
@@ -47,7 +51,7 @@ const isAll = computed(() => {
 
 const chartData = computed(() => {
   return {
-    labels: data?.map((el) => el.date),
+    labels: data ? data.map((el) => el.month_name) : [],
     datasets: isAll.value,
   } as ChartData;
 });
