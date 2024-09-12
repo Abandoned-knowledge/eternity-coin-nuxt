@@ -15,6 +15,10 @@ onMounted(() => {
   transactionStore.fetchIncome();
   transactionStore.fetchExpense();
   transactionStore.fetchAll();
+  transactionStore.fetchDonutData("expense");
+  transactionStore.fetchDonutData("income");
+  transactionStore.fetchLineData("expense");
+  transactionStore.fetchLineData("income");
 });
 </script>
 
