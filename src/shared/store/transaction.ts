@@ -44,6 +44,42 @@ export const useTransactionStore = defineStore("transaction", () => {
     error ? (allData.value = null) : (allData.value = <ITransactionData[]>data);
   }
 
+  async function fetchDonutData(transaction_type: transactionType) {
+    const { data, error } = await $fetch("/api/transactions/donut", {
+      params: {
+        transaction_type: transaction_type,
+        user_id: user.value?.id,
+      },
+    });
+
+    if (transaction_type == "income") {
+      error
+        ? (donutChartDataIncome.value = null)
+        : (donutChartDataIncome.value = data as donutData[]);
+    } else {
+      error
+        ? (donutChartDataExpense.value = null)
+        : (donutChartDataExpense.value = data as donutData[]);
+    }
+  }
+
+  async function fetchLineData(transaction_type: transactionType) {
+    const { data, error } = await $fetch("/api/transactions/line", {
+      params: {
+        transaction_type: transaction_type,
+        user_id: user.value?.id,
+      },
+    });
+
+    if (transaction_type == "income") {
+      error ? (lineChartDataIncome.value = null) : (lineChartDataIncome.value = data as lineData[]);
+    } else {
+      error
+        ? (lineChartDataExpense.value = null)
+        : (lineChartDataExpense.value = data as lineData[]);
+    }
+  }
+
   return {
     currentTransaction,
     donutChartDataExpense,
@@ -57,5 +93,7 @@ export const useTransactionStore = defineStore("transaction", () => {
     fetchExpense,
     fetchAll,
     dialogDeleteIsVisible,
+    fetchDonutData,
+    fetchLineData,
   };
 });
