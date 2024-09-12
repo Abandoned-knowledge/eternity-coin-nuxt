@@ -43,7 +43,22 @@ const secondDatasetItem = computed(() => {
   } as ChartDataset;
 });
 
-const isAll = computed(() => {
+const isAllLabels = computed(() => {
+  if (props.type == "all") {
+    const incomeLabels = transactionStore.lineChartDataIncome
+      ? transactionStore.lineChartDataIncome.map((el) => el.month_name)
+      : [];
+    const expenseLabels = transactionStore.lineChartDataExpense
+      ? transactionStore.lineChartDataExpense.map((el) => el.month_name)
+      : [];
+    const summaryLabels = [...incomeLabels, ...expenseLabels];
+    return [...new Set(summaryLabels)];
+  } else {
+    return data ? data.map((el) => el.month_name) : [];
+  }
+});
+
+const isAllDatasets = computed(() => {
   return props.type == "all"
     ? [firstDatasetItem.value, secondDatasetItem.value]
     : [datasetItem.value];
@@ -51,8 +66,8 @@ const isAll = computed(() => {
 
 const chartData = computed(() => {
   return {
-    labels: data ? data.map((el) => el.month_name) : [],
-    datasets: isAll.value,
+    labels: isAllLabels.value,
+    datasets: isAllDatasets.value,
   } as ChartData;
 });
 </script>
