@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Categories from "./Categories.vue";
+const categoryStore = useCategoryStore();
+const transansactionStore = useTransactionStore();
 
 const { defineField, errors, handleSubmit } = useForm({
   validationSchema: FormAddTransactionSchema,
@@ -16,7 +18,6 @@ function showToast(severity: primeVueSeverity, msg: string) {
   toast.add({ severity: severity, detail: msg, life: 2000 });
 }
 
-const categoryStore = useCategoryStore();
 const isVisible = ref(false);
 const [value] = defineField("value");
 const [description] = defineField("description");
@@ -28,7 +29,7 @@ watch(type, () => (categoryStore.currentCategory = null));
 
 const onSubmit = handleSubmit(async (values) => {
   if (categoryStore.currentCategory) {
-    const { error, data } = await $fetch("/api/transactions", {
+    const { error } = await $fetch("/api/transactions", {
       method: "post",
       body: {
         value: values.value,
@@ -45,7 +46,13 @@ const onSubmit = handleSubmit(async (values) => {
         "success",
         `Create the new transaction \n${categoryStore.currentCategory?.label} -- ${values.value}`,
       );
-      values.type == "income" ? categoryStore.fetchIncome() : categoryStore.fetchExpense();
+      if (values.type == "income") {
+        categoryStore.fetchIncome();
+        transansactionStore.fetchAllChartData("income");
+      } else {
+        categoryStore.fetchExpense();
+        transansactionStore.fetchAllChartData("expense");
+      }
     }
   }
 });

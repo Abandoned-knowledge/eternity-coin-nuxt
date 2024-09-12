@@ -15,11 +15,14 @@ async function deleteTransaction(id?: string) {
     } else {
       showToast("success", "Delete transaction");
 
-      transactionStore.currentTransaction?.categories.type == "income"
-        ? transactionStore.fetchIncome()
-        : transactionStore.fetchExpense();
+      if (transactionStore.currentTransaction?.categories.type == "income") {
+        transactionStore.fetchIncome();
+        transactionStore.fetchAllChartData("income");
+      } else {
+        transactionStore.fetchExpense();
+        transactionStore.fetchAllChartData("expense");
+      }
       transactionStore.fetchAll();
-
       transactionStore.dialogDeleteIsVisible = false;
     }
   }
