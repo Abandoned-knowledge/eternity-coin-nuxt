@@ -4,17 +4,20 @@ import type { ChartData } from "chart.js";
 import CategoryList from "./CategoryList.vue";
 const props = defineProps<{ type: transactionType }>();
 
-const store = useTransactionStore();
-const data = props.type == "income" ? store.donutChartDataIncome : store.donutChartDataExpense;
+const transactionStore = useTransactionStore();
+const data = computed(() =>
+  props.type == "income"
+    ? transactionStore.donutChartDataIncome
+    : transactionStore.donutChartDataExpense,
+);
 
 const chartData = computed(() => {
   return {
-    labels: data?.map((el) => el.label),
+    labels: data.value ? data.value.map((el) => el.label) : [],
     datasets: [
       {
-        label: "Sales",
-        data: data?.map((el) => el.value),
-        backgroundColor: data?.map((el) => el.color),
+        data: data.value ? data.value.map((el) => el.value) : [],
+        backgroundColor: data.value ? data.value.map((el) => el.color) : [],
       },
     ],
   } as ChartData;
@@ -22,7 +25,7 @@ const chartData = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-5 justify-between h-full">
+  <div class="flex h-full flex-col justify-between gap-5">
     <Chart type="doughnut" :data="chartData" :options="options" :plugins="plugins" />
     <!-- <CategoryList :data="data" /> -->
   </div>
