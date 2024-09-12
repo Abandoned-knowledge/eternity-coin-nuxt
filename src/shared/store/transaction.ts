@@ -55,11 +55,11 @@ export const useTransactionStore = defineStore("transaction", () => {
     if (transaction_type == "income") {
       error
         ? (donutChartDataIncome.value = null)
-        : (donutChartDataIncome.value = data as donutData[]);
+        : (donutChartDataIncome.value = data);
     } else {
       error
         ? (donutChartDataExpense.value = null)
-        : (donutChartDataExpense.value = data as donutData[]);
+        : (donutChartDataExpense.value = data);
     }
   }
 
@@ -72,19 +72,21 @@ export const useTransactionStore = defineStore("transaction", () => {
     });
 
     if (transaction_type == "income") {
-      error ? (lineChartDataIncome.value = null) : (lineChartDataIncome.value = data as lineData[]);
+      error ? (lineChartDataIncome.value = null) : (lineChartDataIncome.value = data);
     } else {
       error
         ? (lineChartDataExpense.value = null)
-        : (lineChartDataExpense.value = data as lineData[]);
+        : (lineChartDataExpense.value = data);
     }
   }
 
   async function fetchAllChartData(transaction_type: transactionType) {
     if (transaction_type == "income") {
+      fetchIncome();
       fetchDonutData("income");
       fetchLineData("income");
     } else {
+      fetchExpense();
       fetchDonutData("expense");
       fetchLineData("expense");
     }

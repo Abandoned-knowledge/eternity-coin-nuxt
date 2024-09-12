@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const categoryStore = useCategoryStore();
+const transactionStore = useTransactionStore();
 const user = useSupabaseUser();
 const toast = useToast();
 const nestedDialogVisible = ref(false);
@@ -33,9 +34,13 @@ async function submitForm() {
       showToast("error", error.message);
     } else {
       showToast("success", `Update name ${defaultLabel.value} on ${newLabel.value}`);
-      await (categoryStore.currentCategory.type == "income"
-        ? categoryStore.fetchIncome()
-        : categoryStore.fetchExpense());
+      if (categoryStore.currentCategory.type == "income") {
+        categoryStore.fetchIncome();
+        transactionStore.fetchAllChartData("income");
+      } else {
+        categoryStore.fetchExpense();
+        transactionStore.fetchAllChartData("expense");
+      }
 
       categoryStore.currentCategory = null;
       categoryStore.updateCategoryIsVisible = false;
@@ -53,9 +58,13 @@ async function deleteCategory() {
       showToast("error", error.message);
     } else {
       showToast("success", `Delete category - ${categoryStore.currentCategory.label}`);
-      await (categoryStore.currentCategory.type == "income"
-        ? categoryStore.fetchIncome()
-        : categoryStore.fetchExpense());
+      if (categoryStore.currentCategory.type == "income") {
+        categoryStore.fetchIncome();
+        transactionStore.fetchAllChartData("income");
+      } else {
+        categoryStore.fetchExpense();
+        transactionStore.fetchAllChartData("expense");
+      }
       nestedDialogVisible.value = false;
       categoryStore.updateCategoryIsVisible = false;
     }

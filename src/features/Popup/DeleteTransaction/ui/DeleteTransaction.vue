@@ -16,10 +16,8 @@ async function deleteTransaction(id?: string) {
       showToast("success", "Delete transaction");
 
       if (transactionStore.currentTransaction?.categories.type == "income") {
-        transactionStore.fetchIncome();
         transactionStore.fetchAllChartData("income");
       } else {
-        transactionStore.fetchExpense();
         transactionStore.fetchAllChartData("expense");
       }
       transactionStore.fetchAll();
