@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
   const response = await client
     .from("transactions")
-    .select(`id, date, value, categories(id, type, label, color)`)
+    .select(`id, date, value, description, categories(id, type, label, color)`)
     .eq("categories.type", type)
     .eq("categories.user_id", user_id)
     .not("categories", "is", null);

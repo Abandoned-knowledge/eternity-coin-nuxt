@@ -24,7 +24,7 @@ const isEmpty = computed(() => {
 });
 
 function setTransaction(transaction: ITransactionData, action: "edit" | "delete") {
-  transactionStore.currentTransaction = transaction;  
+  transactionStore.currentTransaction = transaction;
   action == "delete"
     ? (transactionStore.dialogDeleteIsVisible = true)
     : (transactionStore.dialogUpdateIsVisible = true);
@@ -54,6 +54,7 @@ function setTransaction(transaction: ITransactionData, action: "edit" | "delete"
           />
         </template>
       </Column>
+      <Column field="description" header="Description" />
       <Column header="Action">
         <template #body="slotProps">
           <Button
