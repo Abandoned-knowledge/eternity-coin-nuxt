@@ -54,6 +54,7 @@ const onSubmit = handleSubmit(async (values) => {
         transansactionStore.fetchAllChartData("expense");
       }
     }
+    isVisible.value = false;
   }
 });
 </script>
