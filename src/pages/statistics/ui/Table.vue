@@ -23,9 +23,11 @@ const isEmpty = computed(() => {
   }
 });
 
-function setTransaction(transaction: ITransactionData) {
-  transactionStore.currentTransaction = transaction;
-  transactionStore.dialogDeleteIsVisible = true;
+function setTransaction(transaction: ITransactionData, action: "edit" | "delete") {
+  transactionStore.currentTransaction = transaction;  
+  action == "delete"
+    ? (transactionStore.dialogDeleteIsVisible = true)
+    : (transactionStore.dialogUpdateIsVisible = true);
 }
 </script>
 
@@ -54,8 +56,22 @@ function setTransaction(transaction: ITransactionData) {
       </Column>
       <Column header="Action">
         <template #body="slotProps">
-          <Button size="small" severity="danger" outlined @click="setTransaction(slotProps.data)">
+          <Button
+            size="small"
+            severity="danger"
+            outlined
+            @click="setTransaction(slotProps.data, 'delete')"
+          >
             <DeleteIcon />
+          </Button>
+
+          <Button
+            size="small"
+            severity="help"
+            outlined
+            @click="setTransaction(slotProps.data, 'edit')"
+          >
+            <EditIcon />
           </Button>
         </template>
       </Column>

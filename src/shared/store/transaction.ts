@@ -1,6 +1,7 @@
 export const useTransactionStore = defineStore("transaction", () => {
   const user = useSupabaseUser();
   const dialogDeleteIsVisible = ref(false);
+  const dialogUpdateIsVisible = ref(false);
   const currentTransaction = ref<ITransactionData | null>(null);
 
   const donutChartDataIncome = ref<donutData[] | null>(null);
@@ -53,13 +54,9 @@ export const useTransactionStore = defineStore("transaction", () => {
     });
 
     if (transaction_type == "income") {
-      error
-        ? (donutChartDataIncome.value = null)
-        : (donutChartDataIncome.value = data);
+      error ? (donutChartDataIncome.value = null) : (donutChartDataIncome.value = data);
     } else {
-      error
-        ? (donutChartDataExpense.value = null)
-        : (donutChartDataExpense.value = data);
+      error ? (donutChartDataExpense.value = null) : (donutChartDataExpense.value = data);
     }
   }
 
@@ -74,9 +71,7 @@ export const useTransactionStore = defineStore("transaction", () => {
     if (transaction_type == "income") {
       error ? (lineChartDataIncome.value = null) : (lineChartDataIncome.value = data);
     } else {
-      error
-        ? (lineChartDataExpense.value = null)
-        : (lineChartDataExpense.value = data);
+      error ? (lineChartDataExpense.value = null) : (lineChartDataExpense.value = data);
     }
   }
 
@@ -102,6 +97,7 @@ export const useTransactionStore = defineStore("transaction", () => {
     expenseData,
     allData,
     dialogDeleteIsVisible,
+    dialogUpdateIsVisible,
     fetchIncome,
     fetchExpense,
     fetchAll,

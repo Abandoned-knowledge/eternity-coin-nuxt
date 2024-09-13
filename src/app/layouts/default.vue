@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import UpdateCategory from "~/features/Popup/UpdateCategory";
 import DeleteTransaction from "~/features/Popup/DeleteTransaction";
+import UpdateTransaction from "~/features/Popup/UpdateTransaction";
 const user = useSupabaseUser();
 
 function customIsLogin() {
@@ -13,6 +14,7 @@ function customIsLogin() {
   <main class="container mt-5 flex-grow">
     <slot />
     <UpdateCategory />
+    <UpdateTransaction />
     <DeleteTransaction />
   </main>
 </template>
