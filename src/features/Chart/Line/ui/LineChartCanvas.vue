@@ -3,12 +3,11 @@ import type { ChartData, ChartDataset } from "chart.js";
 import { options } from "..";
 const props = defineProps<{ type: transactionType | "all" }>();
 const tailwindColors = tailwindConfig.theme.colors;
+const transactionStore = useTransactionStore();
 
 const borderColor = computed(() =>
   props.type == "income" ? tailwindColors.income : tailwindColors.expense,
 );
-
-const transactionStore = useTransactionStore();
 
 const data =
   props.type == "income"
@@ -18,7 +17,7 @@ const data =
 const datasetItem = computed(() => {
   return {
     label: props.type,
-    data: data ? data.map((el) => el.value) : [],
+    data: data?.map((el) => el.value) || [],
     borderColor: borderColor.value,
   } as ChartDataset;
 });
@@ -26,9 +25,7 @@ const datasetItem = computed(() => {
 const firstDatasetItem = computed(() => {
   return {
     label: "Income",
-    data: transactionStore.lineChartDataIncome
-      ? transactionStore.lineChartDataIncome.map((el) => el.value)
-      : [],
+    data: transactionStore.lineChartDataIncome?.map((el) => el.value) || [],
     borderColor: tailwindColors.income,
   } as ChartDataset;
 });
@@ -36,25 +33,19 @@ const firstDatasetItem = computed(() => {
 const secondDatasetItem = computed(() => {
   return {
     label: "Expense",
-    data: transactionStore.lineChartDataExpense
-      ? transactionStore.lineChartDataExpense.map((el) => el.value)
-      : [],
+    data: transactionStore.lineChartDataExpense?.map((el) => el.value) || [],
     borderColor: tailwindColors.expense,
   } as ChartDataset;
 });
 
 const isAllLabels = computed(() => {
   if (props.type == "all") {
-    const incomeLabels = transactionStore.lineChartDataIncome
-      ? transactionStore.lineChartDataIncome.map((el) => el.month_name)
-      : [];
-    const expenseLabels = transactionStore.lineChartDataExpense
-      ? transactionStore.lineChartDataExpense.map((el) => el.month_name)
-      : [];
+    const incomeLabels = transactionStore.lineChartDataIncome?.map((el) => el.month_name) || [];
+    const expenseLabels = transactionStore.lineChartDataExpense?.map((el) => el.month_name) || [];
     const summaryLabels = [...incomeLabels, ...expenseLabels];
-    return [...new Set(summaryLabels)];
+    return sortMonths(removeDuplicatesFromArray(summaryLabels));
   } else {
-    return data ? data.map((el) => el.month_name) : [];
+    return data?.map((el) => el.month_name) || [];
   }
 });
 
