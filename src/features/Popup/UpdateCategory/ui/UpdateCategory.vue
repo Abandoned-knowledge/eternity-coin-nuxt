@@ -9,9 +9,7 @@ function showToast(severity: primeVueSeverity, msg: string) {
   toast.add({ severity: severity, detail: msg, life: 2000 });
 }
 
-const defaultLabel = computed(() => {
-  return categoryStore.currentCategory ? categoryStore.currentCategory.label : "New label";
-});
+const defaultLabel = computed(() => categoryStore.currentCategory?.label || "New label");
 
 const newLabel = ref();
 const newColor = ref(categoryStore.currentCategory?.color);
