@@ -22,5 +22,8 @@ function clickHandle(current: clickedButton, color: string, category: CategoryIt
       :label="category.label"
       :color="category.color"
     />
+    <Button @click="categoryStore.createCategoryIsVisible = true" severity="secondary" outlined>
+      <PlusIcon/>
+    </Button>
   </div>
 </template>

@@ -2,9 +2,11 @@ export const useCategoryStore = defineStore("category", () => {
   const user = useSupabaseUser();
 
   const currentCategory = ref<CategoryItem | null>(null);
-  const updateCategoryIsVisible = ref<boolean>(false);
   const income = ref<CategoryItem[] | null>(null);
   const expense = ref<CategoryItem[] | null>(null);
+
+  const updateCategoryIsVisible = ref<boolean>(false);
+  const createCategoryIsVisible = ref<boolean>(false);
 
   async function fetchIncome() {
     if (user.value) {
@@ -35,6 +37,7 @@ export const useCategoryStore = defineStore("category", () => {
     expense,
     currentCategory,
     updateCategoryIsVisible,
+    createCategoryIsVisible,
     fetchIncome,
     fetchExpense,
   };

@@ -2,6 +2,7 @@
 import UpdateCategory from "~/features/Popup/UpdateCategory";
 import DeleteTransaction from "~/features/Popup/DeleteTransaction";
 import UpdateTransaction from "~/features/Popup/UpdateTransaction";
+import CreateCategory from "~/features/Popup/CreateCategory";
 const user = useSupabaseUser();
 
 function customIsLogin() {
@@ -13,6 +14,7 @@ function customIsLogin() {
   <Header class="container" />
   <main class="container mt-5 flex-grow">
     <slot />
+    <CreateCategory />
     <UpdateCategory />
     <UpdateTransaction />
     <DeleteTransaction />

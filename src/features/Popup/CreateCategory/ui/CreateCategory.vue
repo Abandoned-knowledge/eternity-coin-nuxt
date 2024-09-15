@@ -40,11 +40,19 @@ const onSubmit = handleSubmit(async (values) => {
       values.type == "income" ? categoryStore.fetchIncome() : categoryStore.fetchExpense();
     }
   }
+  categoryStore.createCategoryIsVisible = false;
+  label.value = null;
+  color.value = null;
 });
 </script>
 
 <template>
-  <FrameLayout title="create category">
+  <Dialog
+    header="Create the new category"
+    v-model:visible="categoryStore.createCategoryIsVisible"
+    modal
+    class="custom-dialog"
+  >
     <form @submit="onSubmit" class="form">
       <div class="field">
         <FloatLabel>
@@ -78,5 +86,5 @@ const onSubmit = handleSubmit(async (values) => {
 
       <Button label="Add" type="submit" severity="contrast" />
     </form>
-  </FrameLayout>
+  </Dialog>
 </template>
