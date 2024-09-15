@@ -1,19 +1,21 @@
 <script setup lang="ts">
 const tabs: transactionType[] = ["expense", "income"];
+
 const windowStore = useWindowStore();
-const user = useSupabaseUser();
 </script>
 
 <template>
-  <div v-if="!windowStore.isMobile" class="grid grid-cols-2 justify-between gap-5 xl:grid-cols-3">
-    <PopupAddTransaction />
-    <ChartDonut type="income" class="xl:order-1" />
-    <ChartDonut type="expense" class="xl:order-3" />
+  <div v-if="!windowStore.isMobile" class="wrapper">
+    <SelectDate class="date" />
+    <PopupAddTransaction buttonClass="add h-full w-full" />
+    <ChartDonut type="income" class="income" />
+    <ChartDonut type="expense" class="expense" />
   </div>
 
   <Tabs v-else class="h-full justify-between" value="expense">
     <TabPanels>
-      <TabPanel class="p-0" v-for="tab in tabs" :value="tab">
+      <SelectDate/>
+      <TabPanel class="mt-4 p-0" v-for="tab in tabs" :value="tab">
         <ChartDonut :type="tab" />
       </TabPanel>
     </TabPanels>
@@ -32,5 +34,38 @@ const user = useSupabaseUser();
 <style lang="scss" scoped>
 .p-tabpanels {
   @apply px-0;
+}
+
+.date {
+  grid-area: date;
+}
+.income {
+  grid-area: income;
+}
+.expense {
+  grid-area: expense;
+}
+.add {
+  grid-area: add;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 450px 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 40px;
+  grid-template-areas:
+    "income add expense"
+    "income date expense";
+
+  @media screen and (max-width: 1280px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 150px 1fr 1fr;
+    gap: 20px;
+    grid-template-areas:
+      "add date"
+      "income expense"
+      "income expense";
+  }
 }
 </style>

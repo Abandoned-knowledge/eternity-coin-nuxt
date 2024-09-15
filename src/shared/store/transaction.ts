@@ -1,4 +1,5 @@
 export const useTransactionStore = defineStore("transaction", () => {
+  const dateStore = useDateStore();
   const user = useSupabaseUser();
   const dialogDeleteIsVisible = ref(false);
   const dialogUpdateIsVisible = ref(false);
@@ -12,76 +13,82 @@ export const useTransactionStore = defineStore("transaction", () => {
   const expenseData = ref<ITransactionData[] | null>(null);
   const allData = ref<ITransactionData[] | null>(null);
 
-  async function fetchIncome() {
-    const { data, error } = await $fetch("/api/transactions/get/income", {
-      method: "get",
-      params: {
-        user_id: user.value?.id,
-      },
-    });
+  async function fetchTransactions(type: transactionType | "all") {
+    if (type == "income") {
+      const data = await $fetch("/api/transactions/get/income", {
+        method: "get",
+        params: {
+          user_id: user.value?.id,
+          start_date: dateStore.start_date,
+          end_date: dateStore.end_date,
+        },
+      });
 
-    error ? (incomeData.value = null) : (incomeData.value = <ITransactionData[]>data);
-  }
+      data.length > 0 ? (incomeData.value = data as ITransactionData[]) : null;
+    } else if (type == "expense") {
+      const data = await $fetch("/api/transactions/get/expense", {
+        method: "get",
+        params: {
+          user_id: user.value?.id,
+          start_date: dateStore.start_date,
+          end_date: dateStore.end_date,
+        },
+      });
 
-  async function fetchExpense() {
-    const { data, error } = await $fetch("/api/transactions/get/expense", {
-      method: "get",
-      params: {
-        user_id: user.value?.id,
-      },
-    });
+      data.length > 0 ? (expenseData.value = data as ITransactionData[]) : null;
+    } else {
+      const data = await $fetch("/api/transactions", {
+        method: "get",
+        params: {
+          user_id: user.value?.id,
+        },
+      });
 
-    error ? (expenseData.value = null) : (expenseData.value = <ITransactionData[]>data);
-  }
-
-  async function fetchAll() {
-    const { data, error } = await $fetch("/api/transactions", {
-      method: "get",
-      params: {
-        user_id: user.value?.id,
-      },
-    });
-
-    error ? (allData.value = null) : (allData.value = <ITransactionData[]>data);
+      data.length > 0 ? (allData.value = data as ITransactionData[]) : (allData.value = null);
+    }
   }
 
   async function fetchDonutData(transaction_type: transactionType) {
-    const { data, error } = await $fetch("/api/transactions/donut", {
+    const data = await $fetch("/api/transactions/donut", {
       params: {
         transaction_type: transaction_type,
         user_id: user.value?.id,
+        start_date: dateStore.start_date,
+        end_date: dateStore.end_date,
       },
     });
 
     if (transaction_type == "income") {
-      error ? (donutChartDataIncome.value = null) : (donutChartDataIncome.value = data);
+      data.length > 0 ? (donutChartDataIncome.value = data) : (donutChartDataIncome.value = null);
     } else {
-      error ? (donutChartDataExpense.value = null) : (donutChartDataExpense.value = data);
+      data.length > 0 ? (donutChartDataExpense.value = data) : (donutChartDataExpense.value = null);
     }
   }
 
   async function fetchLineData(transaction_type: transactionType) {
-    const { data, error } = await $fetch("/api/transactions/line", {
+    const data = await $fetch("/api/transactions/line", {
       params: {
         transaction_type: transaction_type,
         user_id: user.value?.id,
+        start_date: dateStore.start_date,
+        end_date: dateStore.end_date,
       },
     });
 
     if (transaction_type == "income") {
-      error ? (lineChartDataIncome.value = null) : (lineChartDataIncome.value = data);
+      data.length > 0 ? (lineChartDataIncome.value = data) : (lineChartDataIncome.value = null);
     } else {
-      error ? (lineChartDataExpense.value = null) : (lineChartDataExpense.value = data);
+      data.length > 0 ? (lineChartDataExpense.value = data) : (lineChartDataExpense.value = null);
     }
   }
 
   async function fetchAllChartData(transaction_type: transactionType) {
     if (transaction_type == "income") {
-      fetchIncome();
+      fetchTransactions("income");
       fetchDonutData("income");
       fetchLineData("income");
     } else {
-      fetchExpense();
+      fetchTransactions("expense");
       fetchDonutData("expense");
       fetchLineData("expense");
     }
@@ -98,9 +105,7 @@ export const useTransactionStore = defineStore("transaction", () => {
     allData,
     dialogDeleteIsVisible,
     dialogUpdateIsVisible,
-    fetchIncome,
-    fetchExpense,
-    fetchAll,
+    fetchTransactions,
     fetchDonutData,
     fetchLineData,
     fetchAllChartData,

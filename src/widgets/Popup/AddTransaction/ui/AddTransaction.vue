@@ -42,10 +42,7 @@ const onSubmit = handleSubmit(async (values) => {
     if (error) {
       showToast("error", error.message);
     } else {
-      showToast(
-        "success",
-        `Create the new transaction \n${categoryStore.currentCategory?.label} -- ${values.value}`,
-      );
+      showToast("success", `Create the new transaction \n${categoryStore.currentCategory?.label} -- ${values.value}`);
       if (values.type == "income") {
         categoryStore.fetchIncome();
         transansactionStore.fetchAllChartData("income");
@@ -57,14 +54,15 @@ const onSubmit = handleSubmit(async (values) => {
     isVisible.value = false;
   }
 });
+
+interface props {
+  buttonClass?: string;
+}
+const props = defineProps<props>();
 </script>
 
 <template>
-  <Button
-    size="large"
-    class="col-span-2 w-full xl:order-2 xl:col-span-1 xl:h-1/2 xl:w-auto"
-    @click="isVisible = true"
-  >
+  <Button size="large" :class="props.buttonClass" @click="isVisible = true">
     Add
   </Button>
   <Dialog v-model:visible="isVisible" header="Add Transaction" modal class="custom-dialog">
@@ -99,9 +97,7 @@ const onSubmit = handleSubmit(async (values) => {
 
       <div class="field flex flex-col items-center gap-2">
         <Categories :type="type" />
-        <small class="field__error" v-if="!categoryStore.currentCategory"
-          >Category is a required field</small
-        >
+        <small class="field__error" v-if="!categoryStore.currentCategory">Category is a required field</small>
       </div>
 
       <div class="field flex flex-col items-center justify-center gap-2">

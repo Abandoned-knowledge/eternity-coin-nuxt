@@ -44,7 +44,7 @@ async function updateTransaction(id?: string) {
     } else {
       transactionStore.fetchAllChartData("expense");
     }
-    transactionStore.fetchAll();
+    transactionStore.fetchTransactions('all');
     transactionStore.dialogUpdateIsVisible = false;
   }
 }

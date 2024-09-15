@@ -12,9 +12,9 @@ onMounted(() => {
 
   categoryStore.fetchExpense();
   categoryStore.fetchIncome();
-  transactionStore.fetchIncome();
-  transactionStore.fetchExpense();
-  transactionStore.fetchAll();
+  transactionStore.fetchTransactions("income");
+  transactionStore.fetchTransactions("expense");
+  transactionStore.fetchTransactions("all");
   transactionStore.fetchDonutData("expense");
   transactionStore.fetchDonutData("income");
   transactionStore.fetchLineData("expense");

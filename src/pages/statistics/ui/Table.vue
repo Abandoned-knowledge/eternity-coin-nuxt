@@ -34,15 +34,7 @@ function setTransaction(transaction: ITransactionData, action: "edit" | "delete"
 <template>
   <FrameLayout>
     <EmptyTableFrame v-if="isEmpty" />
-    <DataTable
-      size="small"
-      v-else
-      striped-rows
-      paginator
-      :rows="5"
-      :rowsPerPageOptions="[5, 10, 20, 50]"
-      :value="data"
-    >
+    <DataTable size="small" v-else striped-rows paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" :value="data">
       <Column field="date" header="Date" sortable />
       <Column field="value" header="Value" sortable />
       <Column sort-field="categories.label" header="Category" class="flex justify-center" sortable>
@@ -57,21 +49,11 @@ function setTransaction(transaction: ITransactionData, action: "edit" | "delete"
       <Column field="description" header="Description" />
       <Column header="Action">
         <template #body="slotProps">
-          <Button
-            size="small"
-            severity="danger"
-            outlined
-            @click="setTransaction(slotProps.data, 'delete')"
-          >
+          <Button size="small" severity="danger" outlined @click="setTransaction(slotProps.data, 'delete')">
             <DeleteIcon />
           </Button>
 
-          <Button
-            size="small"
-            severity="help"
-            outlined
-            @click="setTransaction(slotProps.data, 'edit')"
-          >
+          <Button size="small" severity="help" outlined @click="setTransaction(slotProps.data, 'edit')">
             <EditIcon />
           </Button>
         </template>

@@ -13,13 +13,14 @@ export default defineEventHandler(async (event) => {
         end_date: end_date,
         user_id_input: user_id,
       });
-      return { data, error };
+
+      return error ? [] : data;
     }
     const { data, error } = await client.rpc("get_transactions_donut", {
       type_input: transaction_type,
       user_id_input: user_id,
     });
-    return { data, error };
+    return error ? [] : data;
   } else {
     if (start_date && end_date) {
       const { data, error } = await client.rpc("get_transactions_line_by_date", {
@@ -28,12 +29,12 @@ export default defineEventHandler(async (event) => {
         end_date: end_date,
         user_id_input: user_id,
       });
-      return { data, error };
+      return error ? [] : data;
     }
     const { data, error } = await client.rpc("get_transactions_line", {
       type_input: transaction_type,
       user_id_input: user_id,
     });
-    return { data, error };
+    return error ? [] : data;
   }
 });

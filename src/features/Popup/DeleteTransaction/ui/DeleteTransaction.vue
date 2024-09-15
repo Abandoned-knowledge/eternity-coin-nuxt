@@ -20,7 +20,7 @@ async function deleteTransaction(id?: string) {
       } else {
         transactionStore.fetchAllChartData("expense");
       }
-      transactionStore.fetchAll();
+      transactionStore.fetchTransactions('all');
       transactionStore.dialogDeleteIsVisible = false;
     }
   }
