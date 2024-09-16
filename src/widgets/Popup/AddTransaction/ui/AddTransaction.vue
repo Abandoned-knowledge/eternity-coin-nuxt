@@ -62,9 +62,7 @@ const props = defineProps<props>();
 </script>
 
 <template>
-  <Button size="large" :class="props.buttonClass" @click="isVisible = true">
-    Add
-  </Button>
+  <Button size="large" :class="props.buttonClass" @click="isVisible = true"> Add </Button>
   <Dialog v-model:visible="isVisible" header="Add Transaction" modal class="custom-dialog">
     <form @submit="onSubmit" class="form" v-if="categoryStore.income || categoryStore.income">
       <div class="field">
@@ -81,7 +79,7 @@ const props = defineProps<props>();
 
       <div class="field">
         <FloatLabel>
-          <InputText id="value" v-model="value" :invalid="!!errors.value" />
+          <InputNumber pt:root="w-full" id="value" v-model="value" :invalid="!!errors.value" />
           <label for="value">Value</label>
         </FloatLabel>
         <small class="field__error">{{ errors.value }}</small>
