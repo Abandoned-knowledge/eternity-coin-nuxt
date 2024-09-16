@@ -30,7 +30,7 @@ const innerTabs = ["charts", "table"];
               {{ innerTab }}
             </Tab>
           </TabList>
-          <TabPanels pt:root="mt-2">
+          <TabPanels pt:root="mt-5">
             <TabPanel value="charts" class="flex flex-col gap-5 md:flex-row">
               <ChartDonut v-if="tab == 'income' || tab == 'expense'" :type="tab" class="w-full md:w-1/3" />
               <ChartLine :type="tab" class="w-full md:flex-grow" />

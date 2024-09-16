@@ -37,7 +37,7 @@ function setTransaction(transaction: ITransactionData, action: "edit" | "delete"
     <DataTable size="small" v-else striped-rows paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" :value="data">
       <Column field="date" header="Date" sortable />
       <Column field="value" header="Value" sortable />
-      <Column sort-field="categories.label" header="Category" class="flex justify-center" sortable>
+      <Column ort-field="categories.label" header="Category" sortable>
         <template #body="slotProps">
           <CategoryItem
             :color="slotProps.data.categories.color"
@@ -47,15 +47,17 @@ function setTransaction(transaction: ITransactionData, action: "edit" | "delete"
         </template>
       </Column>
       <Column field="description" header="Description" />
-      <Column header="Action">
+      <Column class="w-[120px]" header="Action">
         <template #body="slotProps">
-          <Button size="small" severity="danger" outlined @click="setTransaction(slotProps.data, 'delete')">
-            <DeleteIcon />
-          </Button>
+          <div class="flex gap-3">
+            <Button size="small" severity="danger" outlined @click="setTransaction(slotProps.data, 'delete')">
+              <DeleteIcon />
+            </Button>
 
-          <Button size="small" severity="help" outlined @click="setTransaction(slotProps.data, 'edit')">
-            <EditIcon />
-          </Button>
+            <Button size="small" severity="help" outlined @click="setTransaction(slotProps.data, 'edit')">
+              <EditIcon />
+            </Button>
+          </div>
         </template>
       </Column>
     </DataTable>
