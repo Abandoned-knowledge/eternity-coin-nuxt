@@ -26,6 +26,7 @@ export default {
       colors: {
         surface: colors.slate[50],
         primary: colors.sky[500],
+        'light-gray': colors.slate[200],
         gray: colors.gray[400],
         expense: colors.red[600],
         income: colors.green[500],
