@@ -24,7 +24,7 @@ export const useTransactionStore = defineStore("transaction", () => {
         },
       });
 
-      data.length > 0 ? (incomeData.value = data as ITransactionData[]) : null;
+      data.length > 0 ? (incomeData.value = data as ITransactionData[]) : (incomeData.value = null);
     } else if (type == "expense") {
       const data = await $fetch("/api/transactions/get/expense", {
         method: "get",
@@ -35,12 +35,14 @@ export const useTransactionStore = defineStore("transaction", () => {
         },
       });
 
-      data.length > 0 ? (expenseData.value = data as ITransactionData[]) : null;
+      data.length > 0 ? (expenseData.value = data as ITransactionData[]) : (expenseData.value = null);
     } else {
       const data = await $fetch("/api/transactions", {
         method: "get",
         params: {
           user_id: user.value?.id,
+          start_date: dateStore.start_date,
+          end_date: dateStore.end_date,
         },
       });
 
