@@ -7,11 +7,11 @@ const transactionStore = useTransactionStore();
 
 const isEmpty = computed(() => {
   if (props.type == "income") {
-    return transactionStore.lineChartDataIncome?.length === 0;
+    return transactionStore.lineChartDataIncome == null;
   } else if (props.type == "expense") {
-    return transactionStore.lineChartDataExpense?.length === 0;
+    return transactionStore.lineChartDataExpense == null;
   } else {
-    return transactionStore.lineChartDataIncome?.length === 0 && transactionStore.lineChartDataExpense?.length === 0;
+    return transactionStore.lineChartDataIncome == null && transactionStore.lineChartDataExpense == null;
   }
 });
 </script>

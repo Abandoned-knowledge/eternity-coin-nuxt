@@ -1,4 +1,10 @@
 <script setup lang="ts">
+interface props {
+  size?: "small";
+}
+
+const props = defineProps<props>();
+
 const transactionStore = useTransactionStore();
 const dateStore = useDateStore();
 const windowStore = useWindowStore();
@@ -31,16 +37,16 @@ watch(dateStore, () => {
   transactionStore.fetchTransactions("all");
 });
 
-const title = computed(() => (windowStore.isMobile ? "" : "Change date"));
-const labelDay = computed(() => (windowStore.isMobile ? "D" : "Date"));
-const labelMonth = computed(() => (windowStore.isMobile ? "M" : "Month"));
-const labelYear = computed(() => (windowStore.isMobile ? "Y" : "Year"));
-const labelPeriod = computed(() => (windowStore.isMobile ? "P" : "Period"));
+const title = computed(() => (windowStore.isMobile || props.size ? "" : "Change date"));
+const labelDay = computed(() => (windowStore.isMobile || props.size ? "D" : "Date"));
+const labelMonth = computed(() => (windowStore.isMobile || props.size ? "M" : "Month"));
+const labelYear = computed(() => (windowStore.isMobile || props.size ? "Y" : "Year"));
+const labelPeriod = computed(() => (windowStore.isMobile || props.size ? "P" : "Period"));
 </script>
 
 <template>
-  <FrameLayout :title="title" class="items-center">
-    <div class="flex w-fit h-full items-center justify-center gap-3">
+  <FrameLayout :title="title" class="items-center" :class="{ 'w-fit': props.size }">
+    <div class="flex h-full w-fit items-center justify-center gap-3">
       <div class="relative">
         <Button :label="labelDay" @click="toggleDatePicker" size="small" severity="secondary" />
         <DatePicker

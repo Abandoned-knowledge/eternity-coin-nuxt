@@ -25,6 +25,7 @@ const singleChartData = computed(() => {
         label: props.type,
         data: data.value?.map((el) => el.value) || [],
         borderColor: borderColor.value,
+        backgroundColor: props.type == "income" ? tailwindColors.income : tailwindColors.expense,
       },
     ],
   } as ChartData;
@@ -48,10 +49,12 @@ const chartData = computed(() => {
         {
           data: incomeValues,
           borderColor: tailwindColors.income,
+          backgroundColor: tailwindColors.income,
         },
         {
           data: expenseValues,
           borderColor: tailwindColors.expense,
+          backgroundColor: tailwindColors.expense,
         },
       ],
     } as ChartData;
