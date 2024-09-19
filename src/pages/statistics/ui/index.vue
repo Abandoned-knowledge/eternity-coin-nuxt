@@ -48,7 +48,7 @@ const innerTabs = ["charts", "table"];
 <style lang="scss" scoped>
 .main-tabs {
   .p-tab {
-    @apply min-w-[80px] sm:min-w-[100px] rounded py-2 text-lg;
+    @apply min-w-[80px] rounded py-2 text-lg sm:min-w-[100px];
     &-active {
       @apply bg-primary font-medium text-white;
     }
