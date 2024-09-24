@@ -3,11 +3,20 @@ const { defineField, errors, handleSubmit } = useForm({
   validationSchema: FormChangePasswordSchema,
 });
 
-const [password] = defineField("password");
-const [password_new] = defineField("password_new");
+const supabase = useSupabaseClient();
+const toast = useToast();
+function showToast(severity: primeVueSeverity, msg: string) {
+  toast.add({ severity: severity, detail: msg, life: 2000 });
+}
 
-const onSubmit = handleSubmit((values) => {
-  console.log(values);
+const [password] = defineField("password");
+
+const onSubmit = handleSubmit(async (values) => {
+  const { error } = await supabase.auth.updateUser({
+    password: values.password,
+  });
+  error ? showToast("error", error.message) : showToast("success", "Password is changed!");
+  password.value = null;
 });
 </script>
 
@@ -24,25 +33,10 @@ const onSubmit = handleSubmit((values) => {
             :feedback="false"
             :invalid="!!errors.password"
           />
-          <label for="password">Currenct password</label>
+          <label for="password">New password</label>
         </FloatLabel>
 
         <small class="field__error">{{ errors.password }}</small>
-      </div>
-
-      <div class="field">
-        <FloatLabel>
-          <Password
-            pt:root="w-full"
-            inputId="password_new"
-            v-model="password_new"
-            toggleMask
-            :invalid="!!errors.password_new"
-          />
-          <label for="password_new">New password</label>
-        </FloatLabel>
-
-        <small class="field__error">{{ errors.password_new }}</small>
       </div>
 
       <Button label="Change" type="submit" severity="contrast" />

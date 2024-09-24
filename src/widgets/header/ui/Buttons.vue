@@ -3,7 +3,7 @@ const user = useSupabaseUser();
 const loading = computed(() => !user.value);
 const supabase = useSupabaseClient();
 
-const label = computed(() => (user.value ? user.value.email : "waiting"));
+const label = computed(() => (user.value ? user.value.user_metadata.name || user.value.email : "waiting"));
 
 async function logOut() {
   await supabase.auth.signOut();
