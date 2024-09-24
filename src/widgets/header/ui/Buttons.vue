@@ -7,6 +7,7 @@ const label = computed(() => (user.value ? user.value.email : "waiting"));
 
 async function logOut() {
   await supabase.auth.signOut();
+  navigateTo("/login");
 }
 </script>
 
