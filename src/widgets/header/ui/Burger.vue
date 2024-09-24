@@ -9,7 +9,7 @@ const showSidebar = () => (isVisible.value = true);
     <BurgerIcon />
   </Button>
 
-  <Sidebar
+  <Drawer
     block-scroll
     v-model:visible="isVisible"
     position="right"
@@ -26,7 +26,7 @@ const showSidebar = () => (isVisible.value = true);
         <span>{{ item.label }}</span>
       </NuxtLink>
     </div>
-  </Sidebar>
+  </Drawer>
 </template>
 
 <style lang="scss" scoped>
