@@ -52,6 +52,10 @@ export default defineNuxtConfig({
     autoImports: true,
   },
   supabase: {
-    redirect: false,
+    redirectOptions: {
+      login: "/login",
+      callback: "/confirm",
+      exclude: ["/login", "/register"],
+    },
   },
 });
