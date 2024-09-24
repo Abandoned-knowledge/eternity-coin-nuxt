@@ -61,6 +61,7 @@ definePageMeta({
       </div>
 
       <Button :loading="loading" label="Login" type="submit" severity="contrast" />
+      <p>Do not have an account? <RouterLink class="text-link" to="/register">Sign Up</RouterLink></p>
     </form>
   </FrameLayout>
 </template>

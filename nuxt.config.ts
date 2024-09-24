@@ -23,7 +23,6 @@ export default defineNuxtConfig({
 
   dir: {
     layouts: "app/layouts",
-    // middleware: "app/middleware",
   },
 
   css: ["~/app/style/main.scss"],
@@ -51,5 +50,8 @@ export default defineNuxtConfig({
   },
   veeValidate: {
     autoImports: true,
+  },
+  supabase: {
+    redirect: false,
   },
 });

@@ -15,25 +15,25 @@ function showToast(severity?: primeVueSeverity, msg: string) {
   toast.add({ severity: severity, detail: msg, life: 2000 });
 }
 
+const supabase = useSupabaseClient();
+
 const onSubmit = handleSubmit(async (values) => {
   loading.value = true;
-  const response = await $fetch("/api/users", {
-    method: "post",
-    body: {
-      login: values.login,
-      name: values.name,
-      password: values.password,
-      password_confirm: values.password_confirm,
-    },
+  const { error, data } = await supabase.auth.signUp({
+    email: values.login,
+    password: values.password,
   });
 
-  if (response == "User created") {
-    showToast("success", response);
-    navigateTo("/login");
-  } else {
-    showToast("error", response);
+  if (error) {
+    return showToast("error", error.message);
   }
-  loading.value = false;
+
+  if (data) {
+    showToast("success", "User is created and sign in");
+    return navigateTo("/confirm");
+  }
+
+  return (loading.value = false);
 });
 
 definePageMeta({
@@ -95,6 +95,7 @@ definePageMeta({
       </div>
 
       <Button :loading="loading" label="Register" type="submit" severity="contrast" />
+      <p>Do you have an account? <RouterLink class="text-link" to="/login">Sign In</RouterLink></p>
     </form>
   </FrameLayout>
 </template>
