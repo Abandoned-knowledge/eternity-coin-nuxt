@@ -10,6 +10,6 @@ export default defineEventHandler(async (event) => {
     .select(`id, date, value, categories(id, type, label, color)`)
     .gte("date", start_date)
     .lte("date", end_date)
-    .eq("categories.user_id", user_id);
+    .eq("user_id", user_id);
   return error ? [] : data;
 });
