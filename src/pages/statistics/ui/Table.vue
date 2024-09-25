@@ -5,13 +5,15 @@ const props = defineProps<{ type: transactionType | "all" }>();
 const transactionStore = useTransactionStore();
 const data = computed(() => {
   if (props.type == "income") {
-    return transactionStore.incomeData;
+    return transactionStore.incomeData || [];
   } else if (props.type == "expense") {
-    return transactionStore.expenseData;
+    return transactionStore.expenseData || [];
   } else {
-    return transactionStore.allData;
+    return transactionStore.allData || [];
   }
 });
+
+const user = useSupabaseUser();
 
 const isEmpty = computed(() => {
   if (props.type == "income") {
@@ -32,9 +34,9 @@ function setTransaction(transaction: ITransactionData, action: "edit" | "delete"
 </script>
 
 <template>
-  <FrameLayout class="!px-2 !py-0 rounded overflow-hidden">
+  <FrameLayout class="overflow-hidden rounded !px-2 !py-0">
     <EmptyTableFrame v-if="isEmpty" />
-    <DataTable size="small" v-else striped-rows paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" :value="data">
+    <DataTable size="small" v-else striped-rows :value="data">
       <Column field="date" header="Date" sortable />
       <Column field="value" header="Value" sortable />
       <Column ort-field="categories.label" header="Category" sortable>
