@@ -51,23 +51,11 @@ export default defineNuxtConfig({
   veeValidate: {
     autoImports: true,
   },
-
-  ssr: false,
-
-  // supabase: {
-  //   redirectOptions: {
-  //     login: "/login",
-  //     callback: "/confirm",
-  //     exclude: ["/login", "/register"],
-  //   },
-  //   url: import.meta.env.SUPABASE_URL,
-  //   key: import.meta.env.SUPABASE_KEY,
-  // },
-
-  // runtimeConfig: {
-  //   public: {
-  //     SUPABASE_URL: import.meta.env.SUPABASE_URL,
-  //     SUPABASE_KEY: import.meta.env.SUPABASE_KEY,
-  //   },
-  // },
+  supabase: {
+    redirectOptions: {
+      login: "/login",
+      callback: "/confirm",
+      exclude: ["/login", "/register"],
+    },
+  },
 });
