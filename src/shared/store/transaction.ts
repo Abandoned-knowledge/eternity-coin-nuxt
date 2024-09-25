@@ -94,6 +94,7 @@ export const useTransactionStore = defineStore("transaction", () => {
       fetchDonutData("expense");
       fetchLineData("expense");
     }
+    fetchTransactions("all");
   }
 
   return {
