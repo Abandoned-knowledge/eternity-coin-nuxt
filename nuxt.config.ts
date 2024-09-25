@@ -51,11 +51,23 @@ export default defineNuxtConfig({
   veeValidate: {
     autoImports: true,
   },
+
+  ssr: false,
+
   supabase: {
     redirectOptions: {
       login: "/login",
       callback: "/confirm",
       exclude: ["/login", "/register"],
+    },
+    url: process.env.SUPABASE_URL,
+    key: process.env.SUPABASE_KEY,
+  },
+
+  runtimeConfig: {
+    public: {
+      SUPABASE_URL: process.env.SUPABASE_URL,
+      SUPABASE_KEY: process.env.SUPABASE_KEY,
     },
   },
 });
