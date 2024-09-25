@@ -10,9 +10,9 @@ const innerTabs = ["charts", "table"];
     <TabList
       class="main-tabs"
       pt:activeBar="hidden"
-      pt:root="flex items-center justify-center"
+      pt:root="flex items-center justify-center flex-grow-0"
       pt:tabList="flex justify-center"
-      pt:content="bg-light-gray w-fit rounded overflow-hidden"
+      pt:content="bg-light-gray w-fit rounded overflow-hidden border-none"
     >
       <Tab v-for="tab in tabs" :value="tab">{{ tab }}</Tab>
     </TabList>
