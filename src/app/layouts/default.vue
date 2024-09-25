@@ -3,11 +3,17 @@ import UpdateCategory from "~/features/Popup/UpdateCategory";
 import DeleteTransaction from "~/features/Popup/DeleteTransaction";
 import UpdateTransaction from "~/features/Popup/UpdateTransaction";
 import CreateCategory from "~/features/Popup/CreateCategory";
-const user = useSupabaseUser();
-
-function customIsLogin() {
-  if (!user.value) navigateTo("/login");
-}
+const categoryStore = useCategoryStore();
+const transactionStore = useTransactionStore();
+categoryStore.fetchExpense();
+categoryStore.fetchIncome();
+transactionStore.fetchTransactions("income");
+transactionStore.fetchTransactions("expense");
+transactionStore.fetchTransactions("all");
+transactionStore.fetchDonutData("expense");
+transactionStore.fetchDonutData("income");
+transactionStore.fetchLineData("expense");
+transactionStore.fetchLineData("income");
 </script>
 
 <template>
