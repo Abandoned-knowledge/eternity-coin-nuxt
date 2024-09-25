@@ -4,7 +4,7 @@ export default {
   content: ["./src/**/*.{ts,vue,js}"],
   theme: {
     borderRadius: {
-      DEFAULT: '10px',
+      DEFAULT: "10px",
     },
     extend: {
       fontFamily: {
@@ -26,7 +26,7 @@ export default {
       colors: {
         surface: colors.slate[50],
         primary: colors.sky[500],
-        'light-gray': colors.slate[200],
+        "light-gray": colors.slate[200],
         gray: colors.gray[400],
         expense: colors.red[600],
         income: colors.green[500],
